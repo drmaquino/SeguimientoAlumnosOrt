@@ -23,10 +23,10 @@ public class SpinnerEx4Activity extends Activity {
 		final Button button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String anio = "anioX";
-				String cuatri = "mesX";
-				String curso = "cursoX";
-				CharSequence text = String.format("Buscando\n%s %s %s\n...", anio, cuatri, curso);
+				String anio = s1.getSelectedItem().toString();
+				String cuatri = s2.getSelectedItem().toString();
+				String curso = s3.getSelectedItem().toString();
+				CharSequence text = String.format("Buscando\n%s / %s / %s\n...", anio, cuatri, curso);
 				Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
 			}
 		});
