@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 
+    <string name="app_name">Seguimiento de Alumnos</string>
+    <string name="action_settings">Settings</string>
+    <string name="lblAnio">Seleccione el año</string>
+    <string name="lblCuatrimestre">Seleccione el cuatrimestre</string>
+    <string name="lblCurso">Seleccione el curso</string>
+    <string name="btnBuscar">Buscar</string>
+ 
+    <string-array name="anios">
+        <item>1° Año</item>
+        <item>2° Año</item>
+        <item>3° Año</item>
+    </string-array>
+    
+    <string-array name="cuatrimestres">
+        <item>1° Cuatrimestre</item>
+        <item>2° Cuatrimestre</item>
+    </string-array>
+    
+    <string-array name="cursos">
+        <item>Curso A</item>
+        <item>Curso B</item>
+        <item>Curso C</item>
+    </string-array>
+ 
+</resources>
