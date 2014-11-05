@@ -1,6 +1,11 @@
-package com.app;
+package main.controllers;
+
+import main.model.Curso;
+
+import com.app.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +22,7 @@ public class HomeActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_home);
 
         spAnios = (Spinner) findViewById(R.id.spAnios);
         spCuatrimestres = (Spinner) findViewById(R.id.spCuatrimestres);
@@ -28,12 +33,23 @@ public class HomeActivity extends Activity
         {
             public void onClick(View v)
             {
-                String anio = spAnios.getSelectedItem().toString();
-                String cuatri = spCuatrimestres.getSelectedItem().toString();
-                String curso = spCursos.getSelectedItem().toString();
-                CharSequence text = String.format("Buscando\n%s / %s / %s\n...", anio, cuatri, curso);
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+                buscar();
             }
         });
+    }
+    
+    private void buscar()
+    {
+        String anio = spAnios.getSelectedItem().toString();
+        String cuatri = spCuatrimestres.getSelectedItem().toString();
+        String letra = spCursos.getSelectedItem().toString();
+        Intent intent = new Intent(this, GruposActivity.class);
+        
+        //empaqueto y adjunto los datos del curso y se los mando a la prox activity con el intent
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("curso", new String[]{anio, cuatri, letra});
+        intent.putExtras(bundle);
+        
+        startActivity(intent);
     }
 }
