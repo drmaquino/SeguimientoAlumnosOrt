@@ -3,70 +3,48 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <!-- Label -->
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:text="@string/lblAnio" />
-
-    <!-- Spinner Dropdown -->
-
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spAnios"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:layout_marginTop="10dip"
-        android:entries="@array/anios" />
-
-    <!-- Label -->
-
+        android:entries="@array/anios" />    
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:text="@string/lblCuatrimestre" />
-
-    <!-- Spinner Dropdown -->
-
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spCuatrimestres"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:layout_marginTop="10dip"
         android:entries="@array/cuatrimestres" />
-
-    <!-- Label -->
-
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:text="@string/lblCurso" />
-
-    <!-- Spinner Dropdown -->
-
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/spCursos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:layout_marginTop="10dip"
         android:entries="@array/cursos" />
-
-    <!-- Button -->
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnBuscar" />
-
 </LinearLayout>
