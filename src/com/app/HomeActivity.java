@@ -17,7 +17,7 @@ public class HomeActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grupos);
+        setContentView(R.layout.home);
 
         spAnios = (Spinner) findViewById(R.id.spAnios);
         spCuatrimestres = (Spinner) findViewById(R.id.spCuatrimestres);
