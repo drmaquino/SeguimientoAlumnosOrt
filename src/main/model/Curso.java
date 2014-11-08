@@ -2,29 +2,59 @@ package main.model;
 
 public class Curso
 {
-    private String anio;
-    private String cuatrimestre;
-    private String letra;
+    //private variables
+    int _id;
+    private String _anio;
+    private String _cuatrimestre;
+    private String _letra;    
 
-    public String getAnio()
+    public int get_id()
     {
-        return anio;
+        return _id;
     }
 
-    public String getCuatrimestre()
+    public void set_id(int id)
     {
-        return cuatrimestre;
+        this._id = id;
+    }
+    
+    public String get_anio()
+    {
+        return _anio;
     }
 
-    public String getLetra()
+    public void set_anio(String anio)
     {
-        return letra;
+        this._anio = anio;
     }
 
-    public Curso(String anio, String cuatrimestre, String letra)
+    public String get_cuatrimestre()
     {
-        this.anio = anio;
-        this.cuatrimestre = cuatrimestre;
-        this.letra = letra;
+        return _cuatrimestre;
+    }
+
+    public void set_cuatrimestre(String cuatrimestre)
+    {
+        this._cuatrimestre = cuatrimestre;
+    }
+
+    public String get_letra()
+    {
+        return _letra;
+    }
+
+    public void set_letra(String letra)
+    {
+        this._letra = letra;
+    }
+    
+    public Curso(){};
+
+    public Curso(int id, String anio, String cuatrimestre, String letra)
+    {
+        this._id = id;
+        this._anio = anio;
+        this._cuatrimestre = cuatrimestre;
+        this._letra = letra;
     }
 }
