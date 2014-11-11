@@ -2,11 +2,11 @@ package main.model;
 
 public class Curso
 {
-    //private variables
+    // private variables
     int _id;
     private String _anio;
     private String _cuatrimestre;
-    private String _letra;    
+    private String _letra;
 
     public int get_id()
     {
@@ -17,7 +17,7 @@ public class Curso
     {
         this._id = id;
     }
-    
+
     public String get_anio()
     {
         return _anio;
@@ -47,8 +47,10 @@ public class Curso
     {
         this._letra = letra;
     }
-    
-    public Curso(){};
+
+    public Curso()
+    {
+    };
 
     public Curso(int id, String anio, String cuatrimestre, String letra)
     {
@@ -56,5 +58,11 @@ public class Curso
         this._anio = anio;
         this._cuatrimestre = cuatrimestre;
         this._letra = letra;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s, %s, %s", _anio, _cuatrimestre, _letra);
     }
 }
