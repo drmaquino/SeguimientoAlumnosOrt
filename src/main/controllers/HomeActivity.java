@@ -1,5 +1,6 @@
 package main.controllers;
 
+import main.helper.DBHelper;
 import main.model.Curso;
 import main.persistence.CursoDAO;
 import android.app.Activity;
@@ -34,7 +35,10 @@ public class HomeActivity extends Activity
         String letra = spCursos.getSelectedItem().toString();
 
         /* TEST: guardo el curso para que la DB no este vacia en la prox pantalla */
-        CursoDAO cdao = new CursoDAO(this);
+
+        //CursoDAO cdao = new CursoDAO(this); //TODO: eliminar!
+        
+        DBHelper cdao = new DBHelper(this);
         cdao.regenerateDB();
         Curso curso = new Curso();
         curso.set_anio(anio);
