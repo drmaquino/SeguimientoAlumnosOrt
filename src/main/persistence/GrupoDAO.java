@@ -36,9 +36,7 @@ public class GrupoDAO extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		String CREATE_CURSOS_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO + " INTEGER,"
-				+ KEY_NUMERO + " TEXT" + ")";
+		String CREATE_CURSOS_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO + " INTEGER," + KEY_NUMERO + " TEXT" + ")";
 		db.execSQL(CREATE_CURSOS_GRUPOS);
 	}
 
@@ -76,14 +74,11 @@ public class GrupoDAO extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID,
-				KEY_ID_CURSO, KEY_NUMERO }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID, KEY_ID_CURSO, KEY_NUMERO }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Grupo Grupo = new Grupo(Integer.parseInt(cursor.getString(0)),
-				Integer.parseInt(cursor.getString(1)), cursor.getString(2));
+		Grupo Grupo = new Grupo(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)), cursor.getString(2));
 		// return Grupo
 		return Grupo;
 	}
@@ -128,16 +123,14 @@ public class GrupoDAO extends SQLiteOpenHelper
 		values.put(KEY_NUMERO, Grupo.get_numero());
 
 		// updating row
-		return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(Grupo.get_id()) });
+		return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?", new String[] { String.valueOf(Grupo.get_id()) });
 	}
 
 	// Deleting single Grupo
 	public void deleteGrupo(Grupo Grupo)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_GRUPOS, KEY_ID + " = ?",
-				new String[] { String.valueOf(Grupo.get_id()) });
+		db.delete(TABLE_GRUPOS, KEY_ID + " = ?", new String[] { String.valueOf(Grupo.get_id()) });
 		db.close();
 	}
 
@@ -166,10 +159,7 @@ public class GrupoDAO extends SQLiteOpenHelper
 	{
 		List<Grupo> GrupoList = new ArrayList<Grupo>();
 		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID,
-				KEY_ID_CURSO, KEY_NUMERO }, KEY_ID_CURSO + "=?",
-				new String[] { String.valueOf(id_curso) }, null, null, null,
-				null);
+		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID, KEY_ID_CURSO, KEY_NUMERO }, KEY_ID_CURSO + "=?", new String[] { String.valueOf(id_curso) }, null, null, null, null);
 
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst())

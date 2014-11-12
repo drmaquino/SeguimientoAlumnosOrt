@@ -36,15 +36,14 @@ public class GruposActivity extends Activity
 
 		DBHelper cdao = new DBHelper(this);
 
-		Curso curso = cdao.findCursoByAnioCuatriLetra(datosDelCurso[0],
-				datosDelCurso[1], datosDelCurso[2]);
+		Curso curso = cdao.findCursoByAnioCuatriLetra(datosDelCurso[0], datosDelCurso[1], datosDelCurso[2]);
 
 		tvCurso = (TextView) findViewById(R.id.curso);
 		lvGrupos = (ListView) findViewById(R.id.listaDeCursos);
 
 		tvCurso.setText(curso.toString());
 
-		cdao.regenerateDB();
+		cdao.regenerateGruposTable();
 		Grupo g1 = new Grupo(0, 0, "Grupo 1");
 		Grupo g2 = new Grupo(1, 0, "Grupo 2");
 		Grupo g3 = new Grupo(2, 0, "Grupo 3");
@@ -65,20 +64,14 @@ public class GruposActivity extends Activity
 			grupos.add(g.get_numero());
 		}
 
-		// String[] grupos = new String[] { "Grupo 1", "Grupo 2", "Grupo 3",
-		// "Grupo 4", "Grupo 5", "Grupo 6", "Grupo 7" };
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, grupos);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, grupos);
 		lvGrupos.setAdapter(adapter);
 
 		lvGrupos.setOnItemClickListener(new OnItemClickListener()
 		{
-			public void onItemClick(AdapterView parent, View v, int position,
-					long id)
+			public void onItemClick(AdapterView parent, View v, int position, long id)
 			{
-				Toast.makeText(getApplicationContext(), "entrando al grupo!",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "entrando al grupo!", Toast.LENGTH_LONG).show();
 			}
 		});
 	}

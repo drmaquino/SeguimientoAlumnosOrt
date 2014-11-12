@@ -38,13 +38,9 @@ public class DBHelper extends SQLiteOpenHelper
 	private static final String KEY_ID_CURSO = "id_curso";
 	private static final String KEY_NUMERO = "numero";
 
-	private static String CREATE_CURSOS_TABLE = "CREATE TABLE " + TABLE_CURSOS
-			+ "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT,"
-			+ KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
+	private static String CREATE_TABLE_CURSOS = "CREATE TABLE " + TABLE_CURSOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT," + KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
 
-	private static String CREATE_CURSOS_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS
-			+ "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO
-			+ " INTEGER," + KEY_NUMERO + " TEXT" + ")";
+	private static String CREATE_TABLE_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO + " INTEGER," + KEY_NUMERO + " TEXT" + ")";
 
 	public DBHelper(Context context)
 	{
@@ -55,8 +51,8 @@ public class DBHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		db.execSQL(CREATE_CURSOS_TABLE);
-		db.execSQL(CREATE_CURSOS_GRUPOS);
+		regenerateCursosTable();
+		regenerateGruposTable();
 	}
 
 	// Upgrading database
@@ -95,22 +91,19 @@ public class DBHelper extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_CURSOS, new String[] { KEY_ID, KEY_ANIO,
-				KEY_CUATRI, KEY_LETRA }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_CURSOS, new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI, KEY_LETRA }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3));
+		Curso curso = new Curso(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 		// return Curso
-		return Curso;
+		return curso;
 	}
 
 	// Getting All Cursos
 	public List<Curso> getAllCursos()
 	{
-		List<Curso> CursoList = new ArrayList<Curso>();
+		List<Curso> cursoList = new ArrayList<Curso>();
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + TABLE_CURSOS;
 
@@ -122,42 +115,40 @@ public class DBHelper extends SQLiteOpenHelper
 		{
 			do
 			{
-				Curso Curso = new Curso();
-				Curso.set_id(Integer.parseInt(cursor.getString(0)));
-				Curso.set_anio(cursor.getString(1));
-				Curso.set_cuatrimestre(cursor.getString(2));
-				Curso.set_letra(cursor.getString(3));
+				Curso curso = new Curso();
+				curso.set_id(Integer.parseInt(cursor.getString(0)));
+				curso.set_anio(cursor.getString(1));
+				curso.set_cuatrimestre(cursor.getString(2));
+				curso.set_letra(cursor.getString(3));
 				// Adding Curso to list
-				CursoList.add(Curso);
+				cursoList.add(curso);
 			}
 			while (cursor.moveToNext());
 		}
 
 		// return Curso list
-		return CursoList;
+		return cursoList;
 	}
 
 	// Updating single Curso
-	public int updateCurso(Curso Curso)
+	public int updateCurso(Curso curso)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_ANIO, Curso.get_anio());
-		values.put(KEY_CUATRI, Curso.get_cuatrimestre());
-		values.put(KEY_LETRA, Curso.get_letra());
+		values.put(KEY_ANIO, curso.get_anio());
+		values.put(KEY_CUATRI, curso.get_cuatrimestre());
+		values.put(KEY_LETRA, curso.get_letra());
 
 		// updating row
-		return db.update(TABLE_CURSOS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(Curso.get_id()) });
+		return db.update(TABLE_CURSOS, values, KEY_ID + " = ?", new String[] { String.valueOf(curso.get_id()) });
 	}
 
 	// Deleting single Curso
-	public void deleteCurso(Curso Curso)
+	public void deleteCurso(Curso curso)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_CURSOS, KEY_ID + " = ?",
-				new String[] { String.valueOf(Curso.get_id()) });
+		db.delete(TABLE_CURSOS, KEY_ID + " = ?", new String[] { String.valueOf(curso.get_id()) });
 		db.close();
 	}
 
@@ -174,27 +165,22 @@ public class DBHelper extends SQLiteOpenHelper
 		return cursor.getCount();
 	}
 
-	public Curso findCursoByAnioCuatriLetra(String anio, String cuatri,
-			String letra)
+	public Curso findCursoByAnioCuatriLetra(String anio, String cuatri, String letra)
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		String[] columns = new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI,
-				KEY_LETRA };
-		String select = String.format("%s=? AND %s=? AND %s=?", KEY_ANIO,
-				KEY_CUATRI, KEY_LETRA);
-		String[] selectArgs = new String[] { anio, cuatri, letra };
+		String[] select = new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI, KEY_LETRA };
+		String where = String.format("%s=? AND %s=? AND %s=?", KEY_ANIO, KEY_CUATRI, KEY_LETRA);
+		String[] whereArgs = new String[] { anio, cuatri, letra };
 
-		Cursor cursor = db.query(TABLE_CURSOS, columns, select, selectArgs,
-				null, null, null, null);
+		Cursor cursor = db.query(TABLE_CURSOS, select, where, whereArgs, null, null, null, null);
 
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3));
+		Curso curso = new Curso(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 		// return Curso
-		return Curso;
+		return curso;
 	}
 
 	/**
@@ -220,22 +206,19 @@ public class DBHelper extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID,
-				KEY_ID_CURSO, KEY_NUMERO }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID, KEY_ID_CURSO, KEY_NUMERO }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Grupo Grupo = new Grupo(Integer.parseInt(cursor.getString(0)),
-				Integer.parseInt(cursor.getString(1)), cursor.getString(2));
+		Grupo grupo = new Grupo(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)), cursor.getString(2));
 		// return Grupo
-		return Grupo;
+		return grupo;
 	}
 
 	// Getting All Grupos
 	public List<Grupo> getAllGrupos()
 	{
-		List<Grupo> GrupoList = new ArrayList<Grupo>();
+		List<Grupo> grupoList = new ArrayList<Grupo>();
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + TABLE_GRUPOS;
 
@@ -247,49 +230,55 @@ public class DBHelper extends SQLiteOpenHelper
 		{
 			do
 			{
-				Grupo Grupo = new Grupo();
-				Grupo.set_id(Integer.parseInt(cursor.getString(0)));
-				Grupo.set_curso_id(Integer.parseInt(cursor.getString(1)));
-				Grupo.set_numero(cursor.getString(2));
+				Grupo grupo = new Grupo();
+				grupo.set_id(Integer.parseInt(cursor.getString(0)));
+				grupo.set_curso_id(Integer.parseInt(cursor.getString(1)));
+				grupo.set_numero(cursor.getString(2));
 
 				// Adding Grupo to list
-				GrupoList.add(Grupo);
+				grupoList.add(grupo);
 			}
 			while (cursor.moveToNext());
 		}
 
 		// return Grupo list
-		return GrupoList;
+		return grupoList;
 	}
 
 	// Updating single Grupo
-	public int updateGrupo(Grupo Grupo)
+	public int updateGrupo(Grupo grupo)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_ID_CURSO, Grupo.get_curso_id());
-		values.put(KEY_NUMERO, Grupo.get_numero());
+		values.put(KEY_ID_CURSO, grupo.get_curso_id());
+		values.put(KEY_NUMERO, grupo.get_numero());
 
 		// updating row
-		return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(Grupo.get_id()) });
+		return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?", new String[] { String.valueOf(grupo.get_id()) });
 	}
 
 	// Deleting single Grupo
-	public void deleteGrupo(Grupo Grupo)
+	public void deleteGrupo(Grupo grupo)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_GRUPOS, KEY_ID + " = ?",
-				new String[] { String.valueOf(Grupo.get_id()) });
+		db.delete(TABLE_GRUPOS, KEY_ID + " = ?", new String[] { String.valueOf(grupo.get_id()) });
 		db.close();
 	}
 
-	public void regenerateDB()
+	public void regenerateGruposTable()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GRUPOS);
-		onCreate(db);
+		db.execSQL(CREATE_TABLE_GRUPOS);
+		db.close();
+	}
+
+	public void regenerateCursosTable()
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CURSOS);
+		db.execSQL(CREATE_TABLE_CURSOS);
 		db.close();
 	}
 
@@ -308,12 +297,14 @@ public class DBHelper extends SQLiteOpenHelper
 
 	public List<Grupo> findGruposByIdCurso(int id_curso)
 	{
-		List<Grupo> GrupoList = new ArrayList<Grupo>();
+		List<Grupo> grupoList = new ArrayList<Grupo>();
 		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID,
-				KEY_ID_CURSO, KEY_NUMERO }, KEY_ID_CURSO + "=?",
-				new String[] { String.valueOf(id_curso) }, null, null, null,
-				null);
+		
+		String[] select = new String[] { KEY_ID, KEY_ID_CURSO, KEY_NUMERO };
+		String where = KEY_ID_CURSO + "=?";
+		String[] whereArgs = new String[] { String.valueOf(id_curso) };
+		
+		Cursor cursor = db.query(TABLE_GRUPOS, select, where, whereArgs, null, null, null, null);
 
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst())
@@ -326,12 +317,12 @@ public class DBHelper extends SQLiteOpenHelper
 				Grupo.set_numero(cursor.getString(2));
 
 				// Adding Grupo to list
-				GrupoList.add(Grupo);
+				grupoList.add(Grupo);
 			}
 			while (cursor.moveToNext());
 		}
 
 		// return Grupo list
-		return GrupoList;
+		return grupoList;
 	}
 }

@@ -37,9 +37,7 @@ public class CursoDAO extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		String CREATE_CURSOS_TABLE = "CREATE TABLE " + TABLE_CURSOS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT,"
-				+ KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
+		String CREATE_CURSOS_TABLE = "CREATE TABLE " + TABLE_CURSOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT," + KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
 		db.execSQL(CREATE_CURSOS_TABLE);
 	}
 
@@ -78,14 +76,11 @@ public class CursoDAO extends SQLiteOpenHelper
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_CURSOS, new String[] { KEY_ID, KEY_ANIO,
-				KEY_CUATRI, KEY_LETRA }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TABLE_CURSOS, new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI, KEY_LETRA }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3));
+		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 		// return Curso
 		return Curso;
 	}
@@ -131,16 +126,14 @@ public class CursoDAO extends SQLiteOpenHelper
 		values.put(KEY_LETRA, Curso.get_letra());
 
 		// updating row
-		return db.update(TABLE_CURSOS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(Curso.get_id()) });
+		return db.update(TABLE_CURSOS, values, KEY_ID + " = ?", new String[] { String.valueOf(Curso.get_id()) });
 	}
 
 	// Deleting single Curso
 	public void deleteCurso(Curso Curso)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_CURSOS, KEY_ID + " = ?",
-				new String[] { String.valueOf(Curso.get_id()) });
+		db.delete(TABLE_CURSOS, KEY_ID + " = ?", new String[] { String.valueOf(Curso.get_id()) });
 		db.close();
 	}
 
@@ -165,25 +158,20 @@ public class CursoDAO extends SQLiteOpenHelper
 		return cursor.getCount();
 	}
 
-	public Curso findCursoByAnioCuatriLetra(String anio, String cuatri,
-			String letra)
+	public Curso findCursoByAnioCuatriLetra(String anio, String cuatri, String letra)
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		String[] columns = new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI,
-				KEY_LETRA };
-		String select = String.format("%s=? AND %s=? AND %s=?", KEY_ANIO,
-				KEY_CUATRI, KEY_LETRA);
+		String[] columns = new String[] { KEY_ID, KEY_ANIO, KEY_CUATRI, KEY_LETRA };
+		String select = String.format("%s=? AND %s=? AND %s=?", KEY_ANIO, KEY_CUATRI, KEY_LETRA);
 		String[] selectArgs = new String[] { anio, cuatri, letra };
 
-		Cursor cursor = db.query(TABLE_CURSOS, columns, select, selectArgs,
-				null, null, null, null);
+		Cursor cursor = db.query(TABLE_CURSOS, columns, select, selectArgs, null, null, null, null);
 
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3));
+		Curso Curso = new Curso(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 		// return Curso
 		return Curso;
 	}
