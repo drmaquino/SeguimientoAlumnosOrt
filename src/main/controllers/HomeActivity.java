@@ -1,7 +1,5 @@
 package main.controllers;
 
-import main.model.Curso;
-import main.persistence.CursoDAO;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,22 +28,12 @@ public class HomeActivity extends Activity
     public void buscar(View v)
     {
         String anio = spAnios.getSelectedItem().toString();
-        String cuatri = spCuatrimestres.getSelectedItem().toString();
+        String cuatrimestre = spCuatrimestres.getSelectedItem().toString();
         String letra = spCursos.getSelectedItem().toString();
-
-        /* TEST: guardo el curso para que la DB no este vacia en la prox pantalla */
-        CursoDAO cdao = new CursoDAO(this);
-        cdao.regenerateDB();
-        Curso curso = new Curso();
-        curso.set_anio(anio);
-        curso.set_cuatrimestre(cuatri);
-        curso.set_letra(letra);
-        cdao.addCurso(curso);
-        /**/
 
         // empaqueto los datos del curso
         Bundle bundle = new Bundle();
-        bundle.putStringArray("curso", new String[] { anio, cuatri, letra });
+        bundle.putStringArray("curso", new String[] { anio, cuatrimestre, letra });
 
         // creo un intent y le los adjunto los datos
         Intent intent = new Intent(this, GruposActivity.class);
