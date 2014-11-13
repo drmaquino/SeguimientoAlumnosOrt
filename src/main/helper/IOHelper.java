@@ -11,19 +11,15 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
-
 /**
  * Ejemplo de uso:
  * 
- * IOHelper ioh = new IOHelper(this);
- * File file = ioh.createLogFile("logs", "log");
- * ioh.saveToFile(file, "linea 1", true);
- * ioh.saveToFile(file, "linea 2", true);
- * ioh.saveToFile(file, "linea 3", true);
- * String texto = ioh.readFile(file);
- * Toast.makeText(getBaseContext(), texto, Toast.LENGTH_LONG).show();
+ * IOHelper ioh = new IOHelper(this); File file = ioh.createLogFile("logs",
+ * "log"); ioh.saveToFile(file, "linea 1", true); ioh.saveToFile(file,
+ * "linea 2", true); ioh.saveToFile(file, "linea 3", true); String texto =
+ * ioh.readFile(file); Toast.makeText(getBaseContext(), texto,
+ * Toast.LENGTH_LONG).show();
  */
-
 
 public class IOHelper
 {
@@ -48,7 +44,8 @@ public class IOHelper
             file = new File(mFolder.getAbsolutePath(), fileName);
             saveToFile(file, "", false);
 
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -65,7 +62,8 @@ public class IOHelper
             myOutWriter.append("\n");
             myOutWriter.close();
             fos.close();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -85,7 +83,8 @@ public class IOHelper
                 text.append('\n');
             }
             br.close();
-        } catch (IOException e)
+        }
+        catch (IOException e)
         {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }

@@ -36,8 +36,10 @@ public class Grupo
         this._numero = _numero;
     }
 
-    public Grupo() {};
-    
+    public Grupo()
+    {
+    };
+
     public Grupo(int id, int curso_id, String numero)
     {
         this._id = id;

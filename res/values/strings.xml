@@ -7,6 +7,7 @@
     <string name="lblCuatrimestre">Seleccione el cuatrimestre</string>
     <string name="lblCurso">Seleccione el curso</string>
     <string name="btnBuscar">Buscar</string>
+    <string name="btnAltaCurso">Crear Curso</string>
 
     <string-array name="anios">
         <item>1° Año</item>

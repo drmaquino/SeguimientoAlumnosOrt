@@ -8,7 +8,7 @@ import android.widget.Spinner;
 
 import com.app.R;
 
-public class HomeActivity extends Activity
+public class BuscarActivity extends Activity
 {
     private Spinner spAnios;
     private Spinner spCuatrimestres;
@@ -18,7 +18,7 @@ public class HomeActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_buscar);
 
         spAnios = (Spinner) findViewById(R.id.spAnios);
         spCuatrimestres = (Spinner) findViewById(R.id.spCuatrimestres);
