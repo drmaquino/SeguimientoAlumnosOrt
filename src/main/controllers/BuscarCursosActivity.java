@@ -8,7 +8,7 @@ import android.widget.Spinner;
 
 import com.app.R;
 
-public class BuscarActivity extends Activity
+public class BuscarCursosActivity extends Activity
 {
     private Spinner spAnios;
     private Spinner spCuatrimestres;

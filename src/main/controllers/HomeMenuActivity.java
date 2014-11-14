@@ -15,6 +15,12 @@ public class HomeMenuActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_menu);
 	}
+	
+	public void goToBuscarCursos(View v)
+	{
+		Intent intent = new Intent(this, BuscarCursosActivity.class);
+		startActivity(intent);
+	}
 
 	public void goToABMCursos(View v)
 	{

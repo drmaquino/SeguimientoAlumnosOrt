@@ -24,8 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="main.controllers.BuscarActivity"
-            android:label="@string/app_name" >
+            android:name="main.controllers.BuscarCursosActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="main.controllers.HomeMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="main.controllers.HomeMenuActivity" />
         </activity>
         <activity
             android:name="main.controllers.GruposActivity"

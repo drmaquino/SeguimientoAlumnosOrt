@@ -10,6 +10,7 @@
     <string name="btnRegistrarCurso">Registrar curso</string>
     <string name="btnGoToAltaCurso">Agregar nuevo curso</string>
     <string name="btnGoToABMCursos">Administrador de Cursos</string>
+    <string name="btnGoToBuscarCursos">Buscar Cursos</string>
 
     <string-array name="anios">
         <item>1° Año</item>

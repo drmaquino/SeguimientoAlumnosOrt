@@ -6,10 +6,16 @@
 
     <TextView
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dip"
+        android:text="ACA VA EL TITULO ?" />
+    
+    <Button
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dip"
-        android:text="PLACEHOLDER" />
+        android:onClick="goToBuscarCursos"
+        android:text="@string/btnGoToBuscarCursos" />
 
     <Button
         android:layout_width="fill_parent"
