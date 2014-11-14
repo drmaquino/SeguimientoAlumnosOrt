@@ -31,17 +31,18 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f090006;
-        public static final int btnBuscar=0x7f090003;
-        public static final int curso=0x7f090004;
-        public static final int listaDeCursos=0x7f090005;
-        public static final int spAnios=0x7f090000;
-        public static final int spCuatrimestres=0x7f090001;
-        public static final int spCursos=0x7f090002;
+        public static final int btnBuscar=0x7f090005;
+        public static final int curso=0x7f090000;
+        public static final int listaDeCursos=0x7f090001;
+        public static final int spAnios=0x7f090002;
+        public static final int spCuatrimestres=0x7f090003;
+        public static final int spCursos=0x7f090004;
     }
     public static final class layout {
-        public static final int activity_alta_curso=0x7f030000;
-        public static final int activity_buscar=0x7f030001;
-        public static final int activity_grupos=0x7f030002;
+        public static final int activity_abm_curso=0x7f030000;
+        public static final int activity_alta_curso=0x7f030001;
+        public static final int activity_buscar=0x7f030002;
+        public static final int activity_grupos=0x7f030003;
     }
     public static final class menu {
         public static final int grupos=0x7f080000;

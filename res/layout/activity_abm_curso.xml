@@ -9,12 +9,19 @@
         android:id="@+id/curso"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="8dip" />
+        android:padding="8dip"
+        android:text="ACA VA EL TITULO" />
 
     <ListView
         android:id="@+id/listaDeCursos"
         android:layout_weight="1"
         android:layout_width="fill_parent"
         android:layout_height="0dp" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnAltaCurso"
+        android:onClick="goToAltaCurso" />
 
 </LinearLayout>

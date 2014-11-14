@@ -6,6 +6,7 @@ import java.util.List;
 import main.helper.DBHelper;
 import main.model.Curso;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,9 +47,15 @@ public class ABMCursoActivity extends Activity
 		{
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
-				Toast.makeText(getApplicationContext(), "entrando al grupo" + position + "!", Toast.LENGTH_LONG).show();
+//				Toast.makeText(getApplicationContext(), "entrando al grupo " + (position + 1) + "!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "entrando al grupo:\n" + lvCursos.getChildAt(position).toString(), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-
+	
+	public void goToAltaCurso(View v)
+	{
+		Intent intent = new Intent(this, AltaCursoActivity.class);
+		startActivity(intent);
+	}
 }

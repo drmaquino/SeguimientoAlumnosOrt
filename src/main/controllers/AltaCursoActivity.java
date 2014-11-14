@@ -47,12 +47,12 @@ public class AltaCursoActivity extends Activity
             curso.set_letra(letra);
             dbh.addCurso(curso);
             cant = dbh.getCursosCount();
-            Toast.makeText(this, "Curso creado. nueva cantidad: " + cant, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Curso creado. nueva cantidad: " + cant, Toast.LENGTH_SHORT).show();
         }
         else
         {
             cant = dbh.getCursosCount();
-            Toast.makeText(this, "El curso ya existe. sigue habiendo " + cant + " cursos.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "El curso ya existe. sigue habiendo " + cant + " cursos.", Toast.LENGTH_SHORT).show();
         }
     }
 }
