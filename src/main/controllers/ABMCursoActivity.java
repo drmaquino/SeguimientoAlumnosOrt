@@ -28,10 +28,28 @@ public class ABMCursoActivity extends Activity
 		setContentView(R.layout.activity_abm_curso);
 
 		lvCursos = (ListView) findViewById(R.id.listaDeCursos);
+		
+		lvCursos.setOnItemClickListener(new OnItemClickListener()
+		{
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+			{
+				Toast.makeText(getApplicationContext(), "mostrando opciones para curso " + position, Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		cargarCursos();		
+	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		cargarCursos();
+	}
+	
+	private void cargarCursos()
+	{
 		DBHelper dbh = new DBHelper(this);
-
-		/* traigo los cursos */
 		List<Curso> cursosObjs = dbh.getAllCursos();
 
 		List<String> cursos = new ArrayList<String>();
@@ -42,17 +60,8 @@ public class ABMCursoActivity extends Activity
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cursos);
 		lvCursos.setAdapter(adapter);
-
-		lvCursos.setOnItemClickListener(new OnItemClickListener()
-		{
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-			{
-//				Toast.makeText(getApplicationContext(), "entrando al grupo " + (position + 1) + "!", Toast.LENGTH_LONG).show();
-				Toast.makeText(getApplicationContext(), "entrando al grupo:\n" + lvCursos.getChildAt(position).toString(), Toast.LENGTH_SHORT).show();
-			}
-		});
 	}
-	
+
 	public void goToAltaCurso(View v)
 	{
 		Intent intent = new Intent(this, AltaCursoActivity.class);
