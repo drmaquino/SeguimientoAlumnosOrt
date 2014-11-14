@@ -86,7 +86,7 @@ public class GruposActivity extends Activity
 
         lvGrupos.setOnItemClickListener(new OnItemClickListener()
         {
-            public void onItemClick(AdapterView parent, View v, int position, long id)
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 Toast.makeText(getApplicationContext(), "entrando al grupo!", Toast.LENGTH_LONG).show();
             }
