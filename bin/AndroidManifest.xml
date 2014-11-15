@@ -32,7 +32,7 @@
                 android:value="main.controllers.HomeMenuActivity" />
         </activity>
         <activity
-            android:name="main.controllers.GruposActivity"
+            android:name="main.controllers.ListarGruposActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

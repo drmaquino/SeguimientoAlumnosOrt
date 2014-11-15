@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.app.R;
 
-public class GruposActivity extends Activity
+public class ListarGruposActivity extends Activity
 {
     private ListView lvGrupos;
     private TextView tvCurso;
@@ -27,7 +27,7 @@ public class GruposActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grupos);
+        setContentView(R.layout.activity_listar_grupos);
 
         tvCurso = (TextView) findViewById(R.id.curso);
         lvGrupos = (ListView) findViewById(R.id.listaDeCursos);

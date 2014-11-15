@@ -18,7 +18,7 @@ public class BuscarCursosActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buscar);
+        setContentView(R.layout.activity_buscar_cursos);
 
         spAnios = (Spinner) findViewById(R.id.spAnios);
         spCuatrimestres = (Spinner) findViewById(R.id.spCuatrimestres);
@@ -36,7 +36,7 @@ public class BuscarCursosActivity extends Activity
         bundle.putStringArray("curso", new String[] { anio, cuatrimestre, letra });
 
         // creo un intent y le los adjunto los datos
-        Intent intent = new Intent(this, GruposActivity.class);
+        Intent intent = new Intent(this, ListarGruposActivity.class);
         intent.putExtras(bundle);
 
         // inicio el intent

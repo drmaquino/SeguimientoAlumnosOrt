@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="main.controllers.GruposActivity" >
+    tools:context="main.controllers.ListarGruposActivity" >
     
     <TextView
         android:id="@+id/curso"
