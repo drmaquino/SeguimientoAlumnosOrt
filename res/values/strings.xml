@@ -11,6 +11,14 @@
     <string name="btnGoToAltaCurso">Agregar nuevo curso</string>
     <string name="btnGoToABMCursos">Administrador de Cursos</string>
     <string name="btnGoToBuscarCursos">Buscar Cursos</string>
+    <string name="TP1">Trabajo practico 1</string>
+    <string name="TP2">Trabajo practico 2</string>
+    <string name="TP3">Trabajo practico 3</string>
+    <string name="TP4">Trabajo practico 4</string>
+    <string name="TP5">Trabajo practico 5</string>
+    <string name="TP6">Trabajo practico 6</string>
+    <string name="TP7">Trabajo practico 7</string>
+    
 
     <string-array name="anios">
         <item>1° Año</item>
@@ -29,6 +37,13 @@
         <item>Curso E</item>
         <item>Curso F</item>
         <item>Curso G</item>
+    </string-array>
+    <string-array name="TPs">
+        <item>Aprobado</item>
+        <item>Pendiente</item>
+        <item>Desaprobado</item>
+        <item>Entregado</item>
+
     </string-array>
 
     <string name="title_activity_grupos">GruposActivity</string>

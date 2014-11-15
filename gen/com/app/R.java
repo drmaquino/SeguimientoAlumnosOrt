@@ -9,6 +9,7 @@ package com.app;
 
 public final class R {
     public static final class array {
+        public static final int TPs=0x7f060003;
         public static final int anios=0x7f060000;
         public static final int cuatrimestres=0x7f060001;
         public static final int cursos=0x7f060002;
@@ -30,26 +31,48 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
+        public static final int action_settings=0x7f090014;
         public static final int btnBuscar=0x7f090005;
         public static final int curso=0x7f090000;
         public static final int listaDeCursos=0x7f090001;
         public static final int spAnios=0x7f090002;
         public static final int spCuatrimestres=0x7f090003;
         public static final int spCursos=0x7f090004;
+        public static final int spinner1=0x7f090007;
+        public static final int spinner2=0x7f090009;
+        public static final int spinner3=0x7f09000b;
+        public static final int spinner4=0x7f09000d;
+        public static final int spinner5=0x7f09000f;
+        public static final int spinner6=0x7f090011;
+        public static final int spinner7=0x7f090013;
+        public static final int textView2=0x7f090008;
+        public static final int textView21=0x7f090006;
+        public static final int textView3=0x7f09000a;
+        public static final int textView4=0x7f09000c;
+        public static final int textView5=0x7f09000e;
+        public static final int textView6=0x7f090010;
+        public static final int textView7=0x7f090012;
     }
     public static final class layout {
         public static final int activity_abm_curso=0x7f030000;
         public static final int activity_alta_curso=0x7f030001;
         public static final int activity_buscar=0x7f030002;
-        public static final int activity_grupos=0x7f030003;
-        public static final int activity_home_menu=0x7f030004;
+        public static final int activity_estadostp=0x7f030003;
+        public static final int activity_grupos=0x7f030004;
+        public static final int activity_home_menu=0x7f030005;
     }
     public static final class menu {
         public static final int grupos=0x7f080000;
         public static final int main=0x7f080001;
     }
     public static final class string {
+        public static final int TP1=0x7f05000a;
+        public static final int TP2=0x7f05000b;
+        public static final int TP3=0x7f05000c;
+        public static final int TP4=0x7f05000d;
+        public static final int TP5=0x7f05000e;
+        public static final int TP6=0x7f05000f;
+        public static final int TP7=0x7f050010;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int btnBuscar=0x7f050005;
@@ -60,7 +83,7 @@ public final class R {
         public static final int lblAnio=0x7f050002;
         public static final int lblCuatrimestre=0x7f050003;
         public static final int lblCurso=0x7f050004;
-        public static final int title_activity_grupos=0x7f05000a;
+        public static final int title_activity_grupos=0x7f050011;
     }
     public static final class style {
         /** 

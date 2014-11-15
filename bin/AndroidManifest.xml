@@ -51,6 +51,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="main.controllers.ABMCursoActivity" />
         </activity>
+                <activity
+            android:name="main.controllers.EstadosTPs"
+            android:label="@string/app_name"
+            android:parentActivityName="main.controllers.EstadosTPs" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="main.controllers.EstadosTPs" />
+        </activity>
     </application>
 
 </manifest>

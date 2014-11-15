@@ -7,6 +7,7 @@ import main.helper.DBHelper;
 import main.model.Curso;
 import main.model.Grupo;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -88,7 +89,8 @@ public class GruposActivity extends Activity
         {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
-                Toast.makeText(getApplicationContext(), "entrando al grupo!", Toast.LENGTH_LONG).show();
+            	Intent intent = new Intent(getApplicationContext(), EstadosTPs.class);
+    			startActivity(intent);
             }
         });
     }
