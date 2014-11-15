@@ -56,24 +56,8 @@ public class ListarGruposActivity extends Activity
             /* seteo el nombre del curso como titulo */
             tvCurso.setText(curso.toString());
 
-            /* creo varios grupos */
-            Grupo g1 = new Grupo(0, 0, "Grupo 1");
-            Grupo g2 = new Grupo(1, 0, "Grupo 2");
-            Grupo g3 = new Grupo(2, 0, "Grupo 3");
-            Grupo g4 = new Grupo(3, 1, "Grupo 4");
-            Grupo g5 = new Grupo(4, 0, "Grupo 5");
-            Grupo g6 = new Grupo(5, 0, "Grupo 6");
-
-            /* guardo los grupos */
-            dbh.addGrupo(g1);
-            dbh.addGrupo(g2);
-            dbh.addGrupo(g3);
-            dbh.addGrupo(g4);
-            dbh.addGrupo(g5);
-            dbh.addGrupo(g6);
-
             /* traigo los grupos */
-            List<Grupo> gruposObjs = dbh.findGruposByIdCurso(0);
+            List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
 
             tvCurso.setText(curso.toString());
 
@@ -90,7 +74,7 @@ public class ListarGruposActivity extends Activity
             {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id)
                 {
-                    Toast.makeText(getApplicationContext(), "entrando al grupo!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "mostrando los TPs del grupo!", Toast.LENGTH_LONG).show();
                 }
             });
         }

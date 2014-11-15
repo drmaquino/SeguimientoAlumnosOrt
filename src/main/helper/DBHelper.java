@@ -38,6 +38,8 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String KEY_ID_CURSO = "id_curso";
     private static final String KEY_NUMERO = "numero";
 
+    private static final int CANT_GRUPOS_POR_CURSO = 7;
+
     private static String CREATE_TABLE_CURSOS = "CREATE TABLE " + TABLE_CURSOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT," + KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
 
     private static String CREATE_TABLE_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO + " INTEGER," + KEY_NUMERO + " TEXT" + ")";
@@ -83,6 +85,20 @@ public class DBHelper extends SQLiteOpenHelper
 
         // Inserting Row
         db.insert(TABLE_CURSOS, null, values);
+
+        Curso cursoCreado = findCursoByAnioCuatriLetra(curso.get_anio(), curso.get_cuatrimestre(), curso.get_letra());
+
+        //si el curso se creo con exito, le asigno una cantidad predeterminada de grupos
+        if (cursoCreado != null)
+        {
+            int id_curso = cursoCreado.get_id();
+
+            for (int i = 1; i <= CANT_GRUPOS_POR_CURSO; i++)
+            {
+                Grupo grupo = new Grupo(id_curso, String.format("Grupo %s", i));
+                addGrupo(grupo);
+            }
+        }
         db.close(); // Closing database connection
     }
 
