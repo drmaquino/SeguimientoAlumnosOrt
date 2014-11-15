@@ -14,8 +14,7 @@ public class EstadosTPs extends Activity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estadostp);
-        Toast.makeText(getApplicationContext(), "Entroo", Toast.LENGTH_SHORT).show();
-
+        
     }
 	
 }
