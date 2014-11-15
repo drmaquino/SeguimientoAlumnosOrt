@@ -6,6 +6,8 @@ import java.util.List;
 import main.helper.DBHelper;
 import main.model.Curso;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +35,9 @@ public class ABMCursoActivity extends Activity
 		{
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
-				Toast.makeText(getApplicationContext(), "mostrando opciones para curso " + position, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "mostrando opciones para curso " + position, Toast.LENGTH_SHORT).show();
+			    AlertDialog dlgConfirmacion = crearDialogoDeConfirmacion();
+			    dlgConfirmacion.show();
 			}
 		});
 		
@@ -67,4 +71,34 @@ public class ABMCursoActivity extends Activity
 		Intent intent = new Intent(this, AltaCursoActivity.class);
 		startActivity(intent);
 	}
+	
+    private AlertDialog crearDialogoDeConfirmacion()
+    {
+        AlertDialog deleteConfirmationDialogBox = new AlertDialog.Builder(this)
+        //set message, title, and icon
+        .setTitle("Borrar curso").setMessage("Está seguro que desea borrar el curso?").setIcon(R.drawable.ic_launcher)
+
+        .setPositiveButton("Borrar", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                borrarCurso();
+                dialog.dismiss();
+            }
+        })
+
+        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        }).create();
+        return deleteConfirmationDialogBox;
+    }
+
+    public void borrarCurso()
+    {
+        Toast.makeText(getApplicationContext(), "borrando curso!", Toast.LENGTH_LONG).show();
+    }
 }
