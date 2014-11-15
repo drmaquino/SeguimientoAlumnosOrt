@@ -39,6 +39,12 @@ public class Grupo
     public Grupo()
     {
     };
+    
+    public Grupo(int curso_id, String numero)
+    {
+        this._curso_id = curso_id;
+        this._numero = numero;
+    }
 
     public Grupo(int id, int curso_id, String numero)
     {
