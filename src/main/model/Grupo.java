@@ -38,7 +38,7 @@ public class Grupo
 
     public Grupo()
     {
-    };
+    }
     
     public Grupo(int curso_id, String numero)
     {

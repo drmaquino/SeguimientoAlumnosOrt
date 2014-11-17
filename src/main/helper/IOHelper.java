@@ -120,7 +120,7 @@ public class IOHelper
 	public void dumpDBtoCSV(Context context)
 	{
 		List<String> csvLine;
-		List<List<String>> lineas;
+		List<List<String>> lineas = new ArrayList<List<String>>();
 		DBHelper dbh = new DBHelper(context);
 		IOHelper ioh = new IOHelper(context);
 		File csvFile = createLogFile("dbdump", "dump.csv");

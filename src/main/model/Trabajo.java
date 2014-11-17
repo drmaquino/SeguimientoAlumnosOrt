@@ -1,50 +1,68 @@
 package main.model;
 
-public class Trabajo {
+public class Trabajo
+{
+	private int _id;
+	private int _id_grupo;
+	private String _nombre;
+	private String _estado;	
 
-	int _id;
-	String _id_grupo;
-	String _id_trabajo;
-	String _estado;
-	
-
-	
-	public Trabajo(int _id,String _id_trabajo,String _id_grupo, String _estado) {
-		super();
-		this._id = _id;
-		this._id_grupo = _id_grupo;
-		this._id_trabajo = _id_trabajo;
-		this._estado = _estado;
-	}
-	public Trabajo()
-	    {
-	    };
-
-	public int get_id() {
+	public int get_id()
+	{
 		return _id;
 	}
-	public void set_id(int _id) {
+
+	public void set_id(int _id)
+	{
 		this._id = _id;
 	}
-	
-	public String get_id_grupo() {
+
+	public int get_id_grupo()
+	{
 		return _id_grupo;
 	}
-	public void set_id_grupo(String _id_grupo) {
+
+	public void set_id_grupo(int _id_grupo)
+	{
 		this._id_grupo = _id_grupo;
 	}
-	
-	public String get_id_trabajo() {
-		return _id_trabajo;
+
+	public String get_nombre()
+	{
+		return _nombre;
 	}
-	public void set_id_trabajo(String _id_trabajo) {
-		this._id_trabajo = _id_trabajo;
+
+	public void set_nombre(String _nombre)
+	{
+		this._nombre = _nombre;
 	}
-	
-	public String get_estado() {
+
+	public String get_estado()
+	{
 		return _estado;
 	}
-	public void set_estado(String _estado) {
+
+	public void set_estado(String _estado)
+	{
 		this._estado = _estado;
+	}
+	
+	public Trabajo()
+	{		
+	}
+	
+	public Trabajo(int id_grupo, String nombre, String estado)
+	{
+		this._id_grupo = id_grupo;
+		this._nombre = nombre;
+		this._estado = estado;		
+	}
+
+	public Trabajo(int id, int id_grupo, String nombre, String estado)
+	{
+		this._id = id;
+		this._id_grupo = id_grupo;
+		this._nombre = nombre;
+		this._estado = estado;
 	}
 }
