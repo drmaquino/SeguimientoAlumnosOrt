@@ -5,6 +5,7 @@ import java.util.List;
 
 import main.model.Curso;
 import main.model.Grupo;
+import main.model.Trabajo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,6 +26,9 @@ public class DBHelper extends SQLiteOpenHelper
 
     // Grupos table name
     private static final String TABLE_GRUPOS = "grupos";
+    
+ // Trabajos table name
+    private static final String TABLE_TRABAJOS = "Trabajos";
 
     // Common Table Columns names
     private static final String KEY_ID = "id";
@@ -38,11 +42,20 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String KEY_ID_CURSO = "id_curso";
     private static final String KEY_NUMERO = "numero";
 
+    
+    //Trabajos Table Columns names
+    private static final String KEY_ID_TRABAJO = "id_trabajo";
+    private static final String KEY_ID_GRUPO = "id_grupo";
+    private static final String KEY_ESTADO = "estado";
+    
+    
     private static final int CANT_GRUPOS_POR_CURSO = 7;
 
     private static String CREATE_TABLE_CURSOS = "CREATE TABLE " + TABLE_CURSOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT," + KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
 
     private static String CREATE_TABLE_GRUPOS = "CREATE TABLE " + TABLE_GRUPOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_CURSO + " INTEGER," + KEY_NUMERO + " TEXT" + ")";
+    
+    private static String CREATE_TABLE_TRABAJOS = "CREATE TABLE " + TABLE_TRABAJOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_TRABAJO + " TEXT," + KEY_ID_GRUPO  + " TEXT," + KEY_ESTADO +" TEXT" + ")";
 
     public DBHelper(Context context)
     {
@@ -55,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper
     {
         db.execSQL(CREATE_TABLE_CURSOS);
         db.execSQL(CREATE_TABLE_GRUPOS);
+        db.execSQL(CREATE_TABLE_TRABAJOS);
     }
 
     // Upgrading database
@@ -64,9 +78,111 @@ public class DBHelper extends SQLiteOpenHelper
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CURSOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GRUPOS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRABAJOS);
 
         // Create tables again
         onCreate(db);
+    }
+    
+    
+    /**
+     * All CRUD(Create, Read, Update, Delete) Operations for TRBAJOS
+     */
+    
+    public void addTrabajo(Trabajo trabajo)
+    {
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	
+    	if (getTrabajoById(trabajo.get_id_trabajo())==null)
+    	{
+    		ContentValues values = new ContentValues();
+        	values.put(KEY_ID_TRABAJO, trabajo.get_id_trabajo());
+        	values.put(KEY_ID_GRUPO, trabajo.get_id_grupo());
+        	values.put(KEY_ESTADO, trabajo.get_estado());
+        	
+        	db.insert(TABLE_TRABAJOS, null, values);
+    	}
+    	
+    	
+    	
+    	db.close();
+    	
+    }
+    
+    public Trabajo getTrabajoById(String id)
+    {
+    	 SQLiteDatabase db = this.getReadableDatabase();
+    	 Trabajo trabajo = new Trabajo();
+
+    	 
+         Cursor cursor = db.query(TABLE_TRABAJOS, new String[] { KEY_ID, KEY_ID_TRABAJO, KEY_ID_GRUPO, KEY_ESTADO}, KEY_ID_TRABAJO + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+         if (cursor.moveToFirst()){
+        	 trabajo.set_id(Integer.parseInt(cursor.getString(0)));
+	         trabajo.set_id_trabajo(cursor.getString(1));
+	         trabajo.set_id_grupo(cursor.getString(2));
+	         trabajo.set_estado(cursor.getString(3));
+	        		 
+	         db.close();
+         }
+         else
+        	 trabajo=null;
+         // return Curso
+         return trabajo;
+    	
+    }
+    
+    public List<Trabajo>getAllTrabajosByIdGrupo(String id_grupo)
+    {
+    	 SQLiteDatabase db = this.getReadableDatabase();
+    	 
+    	 List<Trabajo> TrabajosList = new ArrayList<Trabajo>();
+         // Select All Query
+    	 
+         String selectQuery = "SELECT  * FROM " + TABLE_TRABAJOS;
+    	 //+ " WHERE " + KEY_ID_GRUPO + "=" + id_grupo;
+
+         
+         //Cursor cursor = db.query(TABLE_TRABAJOS, new String[] { KEY_ID, KEY_ID_TRABAJO, KEY_ID_GRUPO, KEY_ESTADO} , KEY_ID_GRUPO + "=?", new String[] {id_grupo}, null, null, null);
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        
+         // looping through all rows and adding to list
+         if (cursor.moveToFirst())
+         {
+             do
+             {
+                 Trabajo trabajo = new Trabajo();
+                 trabajo.set_id(Integer.parseInt(cursor.getString(0)));
+                 trabajo.set_id_trabajo(cursor.getString(1));
+                 trabajo.set_id_grupo(cursor.getString(2));
+                 trabajo.set_estado(cursor.getString(3));
+                 // Adding Curso to list
+                 TrabajosList.add(trabajo);
+             }
+             while (cursor.moveToNext());
+         }
+         db.close();
+         // return Trabajo list
+         return TrabajosList;
+    }
+    
+    public int updateTrabajo(Trabajo trabajo)
+    {
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	
+    	ContentValues values = new ContentValues();
+    	values.put(KEY_ESTADO,trabajo.get_estado());
+    	
+        // updating row
+        return db.update(TABLE_TRABAJOS, values, KEY_ID + " = ?", new String[] { String.valueOf(trabajo.get_id()) });
+    	
+    }
+    
+    public void deleteTabajo(Trabajo trabajo)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TRABAJOS, KEY_ID + " = ?", new String[] { String.valueOf(trabajo.get_id()) });
+        db.close();
     }
 
     /**
@@ -74,7 +190,7 @@ public class DBHelper extends SQLiteOpenHelper
      */
 
     // Adding new Curso
-    public void addCurso(Curso curso)
+     public void addCurso(Curso curso)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 

@@ -31,7 +31,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
+        public static final int GuardarEstados=0x7f090014;
+        public static final int action_settings=0x7f090015;
         public static final int btnBuscar=0x7f090005;
         public static final int curso=0x7f090000;
         public static final int listaDeCursos=0x7f090001;
@@ -45,8 +46,8 @@ public final class R {
         public static final int spinner5=0x7f09000f;
         public static final int spinner6=0x7f090011;
         public static final int spinner7=0x7f090013;
+        public static final int textView1=0x7f090006;
         public static final int textView2=0x7f090008;
-        public static final int textView21=0x7f090006;
         public static final int textView3=0x7f09000a;
         public static final int textView4=0x7f09000c;
         public static final int textView5=0x7f09000e;
