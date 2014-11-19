@@ -23,5 +23,12 @@
         android:layout_weight="1"
         android:onClick="goToABMCursos"
         android:text="@string/btnGoToABMCursos" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:onClick="dumpDBtoCSV"
+        android:text="dump db to csv" />
 
 </LinearLayout>

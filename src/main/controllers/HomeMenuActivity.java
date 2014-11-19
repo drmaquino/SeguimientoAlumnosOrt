@@ -1,5 +1,6 @@
 package main.controllers;
 
+import main.helper.IOHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,5 +27,11 @@ public class HomeMenuActivity extends Activity
 	{
 		Intent intent = new Intent(this, ABMCursoActivity.class);
 		startActivity(intent);
+	}
+	
+	public void dumpDBtoCSV(View v)
+	{
+		IOHelper ioh = new IOHelper(this);
+		ioh.dumpDBtoCSV();
 	}
 }

@@ -117,13 +117,21 @@ public class IOHelper
 		}
 	}
 	
-	public void dumpDBtoCSV(Context context)
+	public void dumpDBtoCSV()
 	{
 		List<String> csvLine;
 		List<List<String>> lineas = new ArrayList<List<String>>();
-		DBHelper dbh = new DBHelper(context);
-		IOHelper ioh = new IOHelper(context);
-		File csvFile = createLogFile("dbdump", "dump.csv");
+		DBHelper dbh = new DBHelper(_context);
+		File csvFile = createLogFile("com.ort.seguimiento", "dump.csv");
+		
+		//creo los titulos de la tabla
+		csvLine = new ArrayList<String>();
+		csvLine.add("CURSO");
+		csvLine.add("GRUPO");
+		csvLine.add("TRABAJO");
+		csvLine.add("ESTADO");
+		lineas.add(csvLine);
+		
 		List<Curso> cursos = dbh.getAllCursos();
 		for (Curso curso : cursos)
 		{
@@ -136,8 +144,8 @@ public class IOHelper
 					{
 						csvLine = new ArrayList<String>();
 						csvLine.add(curso.toString());
-						csvLine.add(grupo.toString());
-						csvLine.add(trabajo.toString());
+						csvLine.add(grupo.get_numero());
+						csvLine.add(trabajo.get_nombre());
 						csvLine.add(trabajo.get_estado());
 						lineas.add(csvLine);
 					}
@@ -147,7 +155,7 @@ public class IOHelper
 		
 		for (List<String> linea : lineas)
 		{
-			ioh.writeLineToCSV(csvFile, linea);
+			this.writeLineToCSV(csvFile, linea);
 		}
 	}
 }

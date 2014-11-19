@@ -63,6 +63,6 @@ public class Curso
     @Override
     public String toString()
     {
-        return String.format("%s, %s, %s", _anio, _cuatrimestre, _letra);
+        return String.format("%s - %s - %s", _anio, _cuatrimestre, _letra);
     }
 }
