@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,8 @@ public class IOHelper
 		try
 		{
 			FileOutputStream fos = new FileOutputStream(file, append);
-			OutputStreamWriter myOutWriter = new OutputStreamWriter(fos);
+			//esto deberia hace rque se puedan grabar caracteres utf8 pero no funciona
+			OutputStreamWriter myOutWriter = new OutputStreamWriter(fos, Charset.forName("UTF-8"));
 			myOutWriter.append(texto);
 			myOutWriter.append("\n");
 			myOutWriter.close();
@@ -143,7 +145,7 @@ public class IOHelper
 					for (Trabajo trabajo : trabajos)
 					{
 						csvLine = new ArrayList<String>();
-						csvLine.add(curso.toString());
+						csvLine.add(curso.getNombreResumido());
 						csvLine.add(grupo.get_numero());
 						csvLine.add(trabajo.get_nombre());
 						csvLine.add(trabajo.get_estado());
