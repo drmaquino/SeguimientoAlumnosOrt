@@ -8,7 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dip"
-        android:text="Inicio ?" />
+        android:text="Inicio" />
     
     <Button
         android:layout_width="fill_parent"
@@ -29,6 +29,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:onClick="dumpDBtoCSV"
-        android:text="dump db to csv" />
+        android:text="Exportar Archivo a SD" />
 
 </LinearLayout>

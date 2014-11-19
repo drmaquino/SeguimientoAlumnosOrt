@@ -23,5 +23,11 @@
         android:layout_height="wrap_content"
         android:text="@string/btnGoToAltaCurso"
         android:onClick="goToAltaCurso" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="reiniciar base de datos"
+        android:onClick="reiniciarBD" />
 
 </LinearLayout>

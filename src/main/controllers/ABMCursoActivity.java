@@ -65,8 +65,6 @@ public class ABMCursoActivity extends Activity
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cursos);
 		lvCursos.setAdapter(adapter);
 	}
-	
-
 
 	public void goToAltaCurso(View v)
 	{
@@ -86,6 +84,8 @@ public class ABMCursoActivity extends Activity
             {
                 borrarCurso(curso);
                 dialog.dismiss();
+                finish();
+                startActivity(getIntent());
             }
         })
 
@@ -101,9 +101,13 @@ public class ABMCursoActivity extends Activity
 
     public void borrarCurso(Curso curso)
     {
-        Toast.makeText(getApplicationContext(), "borrando curso!", Toast.LENGTH_LONG).show();
+       
         DBHelper dbh = new DBHelper(this);
-        //dbh.deleteCurso(curso);
+        dbh.deleteCurso(curso);
+        finish();
+        startActivity(getIntent());
+        Toast.makeText(getApplicationContext(), "Curso borrado correctamente!", Toast.LENGTH_LONG).show();
+
     }
 
     private Curso traerCurso(int posicion)
@@ -113,21 +117,35 @@ public class ABMCursoActivity extends Activity
     	DBHelper dbh = new DBHelper(this);
 		List<Curso> cursosObjs = dbh.getAllCursos();
 
-		Curso curso = new Curso();
+		
 		String scurso = lvCursos.getItemAtPosition(posicion).toString();
 		
 		
-		for (Curso curso2 : cursosObjs) {
-			String cc = curso2.toString();
-			String dd = scurso.toString();
-			if (curso2.toString().equals(scurso.toString()))
+		for (Curso curso : cursosObjs) {
+
+			if (curso.toString().equals(scurso.toString()))
 				break;
 			else
 				i++;
 		}
 
 		
-		return curso = cursosObjs.get(i);
+		return cursosObjs.get(i);
 		
+    }
+
+    public void reiniciarBD(View view){
+    
+    	DBHelper dbh = new DBHelper(this);
+    	List<Curso> CursosList = new ArrayList<Curso>();
+    	
+    	CursosList = dbh.getAllCursos();
+    	for (Curso curso : CursosList) {
+    		dbh.deleteCurso(curso);
+		}
+    	finish();
+        startActivity(getIntent());
+    	Toast.makeText(getApplicationContext(), "Base de datos reiniciada.", Toast.LENGTH_LONG).show();
+    	
     }
 }

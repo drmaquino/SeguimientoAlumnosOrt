@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.R;
 
@@ -33,5 +34,6 @@ public class HomeMenuActivity extends Activity
 	{
 		IOHelper ioh = new IOHelper(this);
 		ioh.dumpDBtoCSV();
+		Toast.makeText(getApplicationContext(), "Archivo generado correctamente:" , Toast.LENGTH_LONG).show();
 	}
 }

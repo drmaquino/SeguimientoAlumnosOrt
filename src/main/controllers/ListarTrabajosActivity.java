@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.R;
 
@@ -116,6 +117,7 @@ public class ListarTrabajosActivity extends Activity
             public void onClick(View v)
             {
                 guardar(v);
+                Toast.makeText(getApplicationContext(), "Cambios guardados correctamente!", Toast.LENGTH_LONG).show();
             }
         });
 

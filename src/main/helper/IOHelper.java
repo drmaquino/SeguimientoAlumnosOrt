@@ -63,7 +63,7 @@ public class IOHelper
 		try
 		{
 			FileOutputStream fos = new FileOutputStream(file, append);
-			//esto deberia hace rque se puedan grabar caracteres utf8 pero no funciona
+			//esto deberia hacer que se puedan grabar caracteres utf8 pero no funciona
 			OutputStreamWriter myOutWriter = new OutputStreamWriter(fos, Charset.forName("UTF-8"));
 			myOutWriter.append(texto);
 			myOutWriter.append("\n");
@@ -159,5 +159,6 @@ public class IOHelper
 		{
 			this.writeLineToCSV(csvFile, linea);
 		}
+		
 	}
 }

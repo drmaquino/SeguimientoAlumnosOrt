@@ -291,7 +291,13 @@ public class DBHelper extends SQLiteOpenHelper
     public void deleteCurso(Curso Curso)
     {
         SQLiteDatabase db = this.getWritableDatabase();
+        List<Grupo> GrupoList = new ArrayList<Grupo>();
+        
         db.delete(TABLE_CURSOS, KEY_ID + " = ?", new String[] { String.valueOf(Curso.get_id()) });
+        GrupoList = findGruposByIdCurso(Curso.get_id());
+        for (Grupo grupo : GrupoList) {
+			deleteGrupo(grupo);
+		}
         db.close();
     }
 
@@ -438,23 +444,29 @@ public class DBHelper extends SQLiteOpenHelper
     }
 
     // Updating single Grupo
-    public int updateGrupo(Grupo Grupo)
+    public int updateGrupo(Grupo grupo)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID_CURSO, Grupo.get_id_curso());
-        values.put(KEY_NUMERO, Grupo.get_numero());
+        values.put(KEY_ID_CURSO, grupo.get_id_curso());
+        values.put(KEY_NUMERO, grupo.get_numero());
 
         // updating row
-        return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?", new String[] { String.valueOf(Grupo.get_id()) });
+        return db.update(TABLE_GRUPOS, values, KEY_ID + " = ?", new String[] { String.valueOf(grupo.get_id()) });
     }
 
     // Deleting single Grupo
-    public void deleteGrupo(Grupo Grupo)
+    public void deleteGrupo(Grupo grupo)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_GRUPOS, KEY_ID + " = ?", new String[] { String.valueOf(Grupo.get_id()) });
+        List<Trabajo> TrabajosList = new ArrayList<Trabajo>();
+        
+        db.delete(TABLE_GRUPOS, KEY_ID + " = ?", new String[] { String.valueOf(grupo.get_id()) });
+        TrabajosList= findTrabajosByIdGrupo(grupo.get_id());
+        for (Trabajo trabajo :TrabajosList) {
+			deleteTabajo(trabajo);
+		}
         db.close();
     }
 
