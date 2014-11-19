@@ -62,7 +62,7 @@ public class ListarGruposActivity extends Activity
         {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
-                Intent intent = new Intent(getApplicationContext(), EstadosTPs.class);
+                Intent intent = new Intent(getApplicationContext(), ListarTrabajosActivity.class);
                 Grupo grupo = dbh.findGrupoByIdCursoNumero(id_curso, String.valueOf(position + 1));
                 intent.putExtra("id_grupo", grupo.get_id());
                 startActivity(intent);

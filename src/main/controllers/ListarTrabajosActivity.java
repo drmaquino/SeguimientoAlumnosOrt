@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.app.R;
 
-public class EstadosTPs extends Activity
+public class ListarTrabajosActivity extends Activity
 {
     private int _id_grupo;
     private ArrayList<Spinner> listaSpiners;
@@ -28,7 +28,7 @@ public class EstadosTPs extends Activity
         listaDeTrabajos = new ArrayList<Trabajo>();
         listaTextView = new ArrayList<TextView>();
         listaSpiners = new ArrayList<Spinner>();
-        setContentView(R.layout.activity_estadostp);
+        setContentView(R.layout.activity_listar_trabajos);
 
         _id_grupo = this.getIntent().getIntExtra("id_grupo", 0);
 
