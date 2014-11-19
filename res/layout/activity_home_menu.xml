@@ -8,7 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="8dip"
-        android:text="ACA VA EL TITULO ?" />
+        android:text="Inicio ?" />
     
     <Button
         android:layout_width="fill_parent"

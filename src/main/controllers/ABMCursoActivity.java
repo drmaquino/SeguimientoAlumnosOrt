@@ -36,7 +36,7 @@ public class ABMCursoActivity extends Activity
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
 				//Toast.makeText(getApplicationContext(), "mostrando opciones para curso " + position, Toast.LENGTH_SHORT).show();
-			    AlertDialog dlgConfirmacion = crearDialogoDeConfirmacion();
+			    AlertDialog dlgConfirmacion = crearDialogoDeConfirmacion(traerCurso(position));
 			    dlgConfirmacion.show();
 			}
 		});
@@ -65,6 +65,8 @@ public class ABMCursoActivity extends Activity
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cursos);
 		lvCursos.setAdapter(adapter);
 	}
+	
+
 
 	public void goToAltaCurso(View v)
 	{
@@ -72,7 +74,7 @@ public class ABMCursoActivity extends Activity
 		startActivity(intent);
 	}
 	
-    private AlertDialog crearDialogoDeConfirmacion()
+    private AlertDialog crearDialogoDeConfirmacion(final Curso curso)
     {
         AlertDialog deleteConfirmationDialogBox = new AlertDialog.Builder(this)
         //set message, title, and icon
@@ -82,7 +84,7 @@ public class ABMCursoActivity extends Activity
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
-                borrarCurso();
+                borrarCurso(curso);
                 dialog.dismiss();
             }
         })
@@ -97,8 +99,35 @@ public class ABMCursoActivity extends Activity
         return deleteConfirmationDialogBox;
     }
 
-    public void borrarCurso()
+    public void borrarCurso(Curso curso)
     {
         Toast.makeText(getApplicationContext(), "borrando curso!", Toast.LENGTH_LONG).show();
+        DBHelper dbh = new DBHelper(this);
+        //dbh.deleteCurso(curso);
+    }
+
+    private Curso traerCurso(int posicion)
+    {
+    	int i =0;
+    	
+    	DBHelper dbh = new DBHelper(this);
+		List<Curso> cursosObjs = dbh.getAllCursos();
+
+		Curso curso = new Curso();
+		String scurso = lvCursos.getItemAtPosition(posicion).toString();
+		
+		
+		for (Curso curso2 : cursosObjs) {
+			String cc = curso2.toString();
+			String dd = scurso.toString();
+			if (curso2.toString().equals(scurso.toString()))
+				break;
+			else
+				i++;
+		}
+
+		
+		return curso = cursosObjs.get(i);
+		
     }
 }
