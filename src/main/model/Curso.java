@@ -59,6 +59,11 @@ public class Curso
         this._cuatrimestre = cuatrimestre;
         this._letra = letra;
     }
+    
+    public String getNombreResumido()
+    {
+    	return String.format("%s/%s/%s", _anio.substring(0, 1), _cuatrimestre.substring(0, 1), _letra.substring(_letra.length() - 1, _letra.length()));
+    }
 
     @Override
     public String toString()
