@@ -22,10 +22,14 @@ public class EstadosTPs extends Activity
 		super.onCreate(savedInstanceState);
 		ArrayList<Trabajo> ListaDeTrabajos = new ArrayList<Trabajo>();
 		final ArrayList<TextView> ListaTextView = new ArrayList<TextView>();
+		final ArrayList<Spinner> ListaSpiners = new ArrayList<Spinner>();
 		setContentView(R.layout.activity_estadostp);
+		
+		int id_grupo = this.getIntent().getIntExtra("id_grupo", 0);
 
 		DBHelper dbh = new DBHelper(getApplicationContext());
 
+		//
 		TextView txtTP1 = (TextView) findViewById(R.id.textView1);
 		TextView txtTP2 = (TextView) findViewById(R.id.textView2);
 		TextView txtTP3 = (TextView) findViewById(R.id.textView3);
@@ -33,8 +37,19 @@ public class EstadosTPs extends Activity
 		TextView txtTP5 = (TextView) findViewById(R.id.textView5);
 		TextView txtTP6 = (TextView) findViewById(R.id.textView6);
 		TextView txtTP7 = (TextView) findViewById(R.id.textView7);
+		
+		ListaTextView.add(txtTP1);
+		ListaTextView.add(txtTP2);
+		ListaTextView.add(txtTP3);
+		ListaTextView.add(txtTP4);
+		ListaTextView.add(txtTP5);
+		ListaTextView.add(txtTP6);
+		ListaTextView.add(txtTP7);
+
+		//
 		Button btnGuardar = (Button) findViewById(R.id.GuardarEstados);
 
+		//
 		Spinner spnEstados1 = (Spinner) findViewById(R.id.spinner1);
 		Spinner spnEstados2 = (Spinner) findViewById(R.id.spinner2);
 		Spinner spnEstados3 = (Spinner) findViewById(R.id.spinner3);
@@ -42,9 +57,7 @@ public class EstadosTPs extends Activity
 		Spinner spnEstados5 = (Spinner) findViewById(R.id.spinner5);
 		Spinner spnEstados6 = (Spinner) findViewById(R.id.spinner6);
 		Spinner spnEstados7 = (Spinner) findViewById(R.id.spinner7);
-
-		final ArrayList<Spinner> ListaSpiners = new ArrayList<Spinner>();
-
+		
 		ListaSpiners.add(spnEstados1);
 		ListaSpiners.add(spnEstados2);
 		ListaSpiners.add(spnEstados3);
@@ -53,6 +66,7 @@ public class EstadosTPs extends Activity
 		ListaSpiners.add(spnEstados6);
 		ListaSpiners.add(spnEstados7);
 
+		//
 		Trabajo trabajo1 = new Trabajo(1, "TP 1", "Pendiente");
 		Trabajo trabajo2 = new Trabajo(1, "TP 2", "Pendiente");
 		Trabajo trabajo3 = new Trabajo(1, "TP 3", "Pendiente");
@@ -69,28 +83,21 @@ public class EstadosTPs extends Activity
 		dbh.addTrabajo(trabajo6);
 		dbh.addTrabajo(trabajo7);
 
-		ListaTextView.add(txtTP1);
-		ListaTextView.add(txtTP2);
-		ListaTextView.add(txtTP3);
-		ListaTextView.add(txtTP4);
-		ListaTextView.add(txtTP5);
-		ListaTextView.add(txtTP6);
-		ListaTextView.add(txtTP7);
+		//
+		ListaDeTrabajos = (ArrayList<Trabajo>) dbh.findTrabajosByIdGrupo(id_grupo);
 
-		ListaDeTrabajos = (ArrayList<Trabajo>) dbh.findTrabajosByIdGrupo(1);
-
+		//
+		
 		int i = 0;
 		for (Trabajo trabajo : ListaDeTrabajos)
 		{
-			ListaTextView.get(i).setText(trabajo.get_id());
+			ListaTextView.get(i).setText(trabajo.get_nombre());
 			i++;
-
 		}
-		String gg;
+		
 		i = 0;
 		for (Trabajo trabajo : ListaDeTrabajos)
 		{
-			gg = trabajo.get_estado();
 			if (trabajo.get_estado().equals("Aprobado"))
 			{
 				ListaSpiners.get(i).setSelection(0);
@@ -107,7 +114,7 @@ public class EstadosTPs extends Activity
 			{
 				ListaSpiners.get(i).setSelection(3);
 			}
-
+			i++;
 		}
 
 		btnGuardar.setOnClickListener(new View.OnClickListener()

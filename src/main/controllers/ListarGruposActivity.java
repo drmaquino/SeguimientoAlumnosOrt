@@ -76,6 +76,7 @@ public class ListarGruposActivity extends Activity
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id)
                 {
                     Intent intent = new Intent(getApplicationContext(),EstadosTPs.class);
+                    intent.putExtra("id_grupo", 1);                    
                     startActivity(intent);
                 }
             });
