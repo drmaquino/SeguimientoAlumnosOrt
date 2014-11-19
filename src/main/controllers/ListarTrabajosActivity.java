@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.helper.DBHelper;
 import main.model.Trabajo;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,9 @@ public class ListarTrabajosActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
+        setCustomActivityTitle("Lista de Trabajos");
+        
         listaDeTrabajos = new ArrayList<Trabajo>();
         listaTextView = new ArrayList<TextView>();
         listaSpiners = new ArrayList<Spinner>();
@@ -136,4 +140,15 @@ public class ListarTrabajosActivity extends Activity
             i++;
         }
     }
+    
+	private void setCustomActivityTitle(String title)
+	{
+		ActionBar ab = getActionBar();
+	    ab.setDisplayShowTitleEnabled(false);
+	    ab.setDisplayShowCustomEnabled(true);
+	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
+	    tv.setText(title);
+		ab.setCustomView(customTitle);
+	}
 }

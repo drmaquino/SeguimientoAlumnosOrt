@@ -1,10 +1,13 @@
 package main.controllers;
 
 import main.helper.IOHelper;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.R;
@@ -15,7 +18,8 @@ public class HomeMenuActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home_menu);
+		setContentView(R.layout.activity_home_menu);		
+		setCustomActivityTitle("Inicio");		
 	}
 	
 	public void goToBuscarCursos(View v)
@@ -35,5 +39,16 @@ public class HomeMenuActivity extends Activity
 		IOHelper ioh = new IOHelper(this);
 		ioh.dumpDBtoCSV();
 		Toast.makeText(getApplicationContext(), "Archivo generado correctamente:" , Toast.LENGTH_LONG).show();
+	}
+	
+	private void setCustomActivityTitle(String title)
+	{
+		ActionBar ab = getActionBar();
+	    ab.setDisplayShowTitleEnabled(false);
+	    ab.setDisplayShowCustomEnabled(true);
+	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
+	    tv.setText(title);
+		ab.setCustomView(customTitle);
 	}
 }

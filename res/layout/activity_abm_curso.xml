@@ -5,13 +5,6 @@
     android:orientation="vertical"
     tools:context="main.controllers.ABMCursoActivity" >
     
-    <TextView
-        android:id="@+id/curso"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dip"
-        android:text="Seleccione el curso deseado" />
-
     <ListView
         android:id="@+id/listaDeCursos"
         android:layout_weight="1"

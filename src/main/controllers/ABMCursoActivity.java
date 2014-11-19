@@ -5,6 +5,7 @@ import java.util.List;
 
 import main.helper.DBHelper;
 import main.model.Curso;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.R;
@@ -29,6 +31,8 @@ public class ABMCursoActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_abm_curso);
+		
+		setCustomActivityTitle("ABM de Cursos");
 
 		lvCursos = (ListView) findViewById(R.id.listaDeCursos);
 
@@ -154,5 +158,16 @@ public class ABMCursoActivity extends Activity
 	{
 		AlertDialog dlgConfirmacion = crearBorrarTodosAlertDialog();
 	    dlgConfirmacion.show();
+	}
+	
+	private void setCustomActivityTitle(String title)
+	{
+		ActionBar ab = getActionBar();
+	    ab.setDisplayShowTitleEnabled(false);
+	    ab.setDisplayShowCustomEnabled(true);
+	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
+	    tv.setText(title);
+		ab.setCustomView(customTitle);
 	}
 }

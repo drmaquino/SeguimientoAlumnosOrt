@@ -2,11 +2,13 @@ package main.controllers;
 
 import main.helper.DBHelper;
 import main.model.Curso;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.R;
@@ -23,6 +25,8 @@ public class BuscarCursosActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_cursos);
+        
+        setCustomActivityTitle("Busqueda de Cursos");
 
         spAnios = (Spinner) findViewById(R.id.spAnios);
         spCuatrimestres = (Spinner) findViewById(R.id.spCuatrimestres);
@@ -53,4 +57,15 @@ public class BuscarCursosActivity extends Activity
             startActivity(intent);
         }
     }
+    
+	private void setCustomActivityTitle(String title)
+	{
+		ActionBar ab = getActionBar();
+	    ab.setDisplayShowTitleEnabled(false);
+	    ab.setDisplayShowCustomEnabled(true);
+	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
+	    tv.setText(title);
+		ab.setCustomView(customTitle);
+	}
 }

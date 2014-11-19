@@ -6,6 +6,7 @@ import java.util.List;
 import main.helper.DBHelper;
 import main.model.Curso;
 import main.model.Grupo;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class ListarGruposActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_grupos);
+        
+        setCustomActivityTitle("Lista de Grupos");
 
         tvCurso = (TextView) findViewById(R.id.curso);
         lvGrupos = (ListView) findViewById(R.id.listaDeCursos);
@@ -69,4 +72,15 @@ public class ListarGruposActivity extends Activity
             }
         });
     }
+    
+	private void setCustomActivityTitle(String title)
+	{
+		ActionBar ab = getActionBar();
+	    ab.setDisplayShowTitleEnabled(false);
+	    ab.setDisplayShowCustomEnabled(true);
+	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
+	    tv.setText(title);
+		ab.setCustomView(customTitle);
+	}
 }
