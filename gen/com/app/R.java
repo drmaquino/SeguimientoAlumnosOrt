@@ -59,8 +59,9 @@ public final class R {
         public static final int activity_alta_curso=0x7f030001;
         public static final int activity_buscar_cursos=0x7f030002;
         public static final int activity_estadostp=0x7f030003;
-        public static final int activity_home_menu=0x7f030004;
-        public static final int activity_listar_grupos=0x7f030005;
+        public static final int activity_estadostp_old=0x7f030004;
+        public static final int activity_home_menu=0x7f030005;
+        public static final int activity_listar_grupos=0x7f030006;
     }
     public static final class menu {
         public static final int grupos=0x7f080000;

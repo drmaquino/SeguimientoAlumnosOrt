@@ -23,6 +23,8 @@ public class ListarGruposActivity extends Activity
 {
     private ListView lvGrupos;
     private TextView tvCurso;
+    private int id_curso;
+    private DBHelper dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,53 +35,38 @@ public class ListarGruposActivity extends Activity
         tvCurso = (TextView) findViewById(R.id.curso);
         lvGrupos = (ListView) findViewById(R.id.listaDeCursos);
 
-        Bundle bundle = this.getIntent().getExtras();
-        String[] datosDelCurso = bundle.getStringArray("curso");
-
-        String anio = datosDelCurso[0];
-        String cuatrimestre = datosDelCurso[1];
-        String letra = datosDelCurso[2];
-
-        /* creo el db helper */
-        DBHelper dbh = new DBHelper(this);
+        dbh = new DBHelper(this);
 
         /* traigo el curso */
-        Curso curso = dbh.findCursoByAnioCuatriLetra(anio, cuatrimestre, letra);
+        id_curso = this.getIntent().getIntExtra("id_curso", 1);
+        Curso curso = dbh.findCursoById(id_curso);
 
-        // si el curso no existe, cierro la actividad y vuelvo a la pag de busqueda
-        if (curso == null)
+        /* seteo el nombre del curso como titulo */
+        tvCurso.setText(curso.toString());
+
+        /* traigo los grupos */
+        List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
+
+        tvCurso.setText(curso.toString());
+
+        List<String> grupos = new ArrayList<String>();
+        for (Grupo g : gruposObjs)
         {
-            Toast.makeText(getApplicationContext(), "El curso seleccionado no existe", Toast.LENGTH_SHORT).show();
-            super.finish();
+            grupos.add("Grupo " + g.get_numero());
         }
-        else
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, grupos);
+        lvGrupos.setAdapter(adapter);
+
+        lvGrupos.setOnItemClickListener(new OnItemClickListener()
         {
-            /* seteo el nombre del curso como titulo */
-            tvCurso.setText(curso.toString());
-
-            /* traigo los grupos */
-            List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
-
-            tvCurso.setText(curso.toString());
-
-            List<String> grupos = new ArrayList<String>();
-            for (Grupo g : gruposObjs)
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
-                grupos.add(g.get_numero());
+                Intent intent = new Intent(getApplicationContext(), EstadosTPs.class);
+                Grupo grupo = dbh.findGrupoByIdCursoNumero(id_curso, String.valueOf(position + 1));
+                intent.putExtra("id_grupo", grupo.get_id());
+                startActivity(intent);
             }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, grupos);
-            lvGrupos.setAdapter(adapter);
-
-            lvGrupos.setOnItemClickListener(new OnItemClickListener()
-            {
-                public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-                {
-                    Intent intent = new Intent(getApplicationContext(),EstadosTPs.class);
-                    intent.putExtra("id_grupo", 1);                    
-                    startActivity(intent);
-                }
-            });
-        }
+        });
     }
 }
