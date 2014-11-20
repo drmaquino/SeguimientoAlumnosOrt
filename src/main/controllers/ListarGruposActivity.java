@@ -22,7 +22,6 @@ import com.app.R;
 public class ListarGruposActivity extends Activity
 {
     private ListView lvGrupos;
-    private TextView tvCurso;
     private int id_curso;
     private DBHelper dbh;
 
@@ -31,10 +30,7 @@ public class ListarGruposActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_grupos);
-        
-        
 
-//        tvCurso = (TextView) findViewById(R.id.curso);
         lvGrupos = (ListView) findViewById(R.id.listaDeCursos);
 
         dbh = new DBHelper(this);
@@ -44,13 +40,10 @@ public class ListarGruposActivity extends Activity
         Curso curso = dbh.findCursoById(id_curso);
 
         /* seteo el nombre del curso como titulo */
-        //tvCurso.setText();
         setCustomActivityTitle(curso.getNombreResumido());
 
         /* traigo los grupos */
         List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
-
-//        tvCurso.setText(curso.toString());
 
         List<String> grupos = new ArrayList<String>();
         for (Grupo g : gruposObjs)

@@ -28,7 +28,7 @@ public class ListarTrabajosActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         
-        setCustomActivityTitle("Lista de Trabajos");
+        
         
         listaDeTrabajos = new ArrayList<Trabajo>();
         listaTextView = new ArrayList<TextView>();
@@ -37,6 +37,8 @@ public class ListarTrabajosActivity extends Activity
 
         _id_grupo = this.getIntent().getIntExtra("id_grupo", 0);
 
+        setCustomActivityTitle("Grupo " + _id_grupo);
+        
         dbh = new DBHelper(getApplicationContext());
 
         //
@@ -85,13 +87,6 @@ public class ListarTrabajosActivity extends Activity
         {
             listaTextView.get(i).setText(listaDeTrabajos.get(i).get_nombre());
         }
-
-        //		int i = 0;
-        //		for (Trabajo trabajo : listaDeTrabajos)
-        //		{
-        //			listaTextView.get(i).setText(trabajo.get_nombre());
-        //			i++;
-        //		}
 
         int i = 0;
         for (Trabajo trabajo : listaDeTrabajos)
