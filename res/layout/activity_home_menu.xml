@@ -3,7 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_ort" />
+    </LinearLayout>
+
     <Button
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -17,7 +29,7 @@
         android:layout_weight="1"
         android:onClick="goToABMCursos"
         android:text="@string/btnGoToABMCursos" />
-    
+
     <Button
         android:layout_width="fill_parent"
         android:layout_height="0dp"

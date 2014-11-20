@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +18,10 @@ public class HomeMenuActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home_menu);		
-		setCustomActivityTitle("Inicio");		
+		setContentView(R.layout.activity_home_menu);
+		setCustomActivityTitle("Inicio");
 	}
-	
+
 	public void goToBuscarCursos(View v)
 	{
 		Intent intent = new Intent(this, BuscarCursosActivity.class);
@@ -32,22 +33,22 @@ public class HomeMenuActivity extends Activity
 		Intent intent = new Intent(this, ABMCursoActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void dumpDBtoCSV(View v)
 	{
 		IOHelper ioh = new IOHelper(this);
 		ioh.dumpDBtoCSV();
-		Toast.makeText(getApplicationContext(), "Archivo generado correctamente" , Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Archivo generado correctamente", Toast.LENGTH_LONG).show();
 	}
-	
+
 	private void setCustomActivityTitle(String title)
 	{
 		ActionBar ab = getActionBar();
-	    ab.setDisplayShowTitleEnabled(false);
-	    ab.setDisplayShowCustomEnabled(true);
-	    View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
-	    TextView tv = (TextView) customTitle.findViewById(R.id.title);
-	    tv.setText(title);
+		ab.setDisplayShowTitleEnabled(false);
+		ab.setDisplayShowCustomEnabled(true);
+		View customTitle = getLayoutInflater().inflate(R.layout.activity_titles, null);
+		TextView tv = (TextView) customTitle.findViewById(R.id.title);
+		tv.setText(title);
 		ab.setCustomView(customTitle);
 	}
 }

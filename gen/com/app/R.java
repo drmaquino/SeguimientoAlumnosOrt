@@ -29,30 +29,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int logo_ort=0x7f020001;
     }
     public static final class id {
-        public static final int GuardarEstados=0x7f090013;
-        public static final int action_settings=0x7f090015;
+        public static final int GuardarEstados=0x7f090014;
+        public static final int action_settings=0x7f090016;
         public static final int btnBuscar=0x7f090004;
+        public static final int imageView1=0x7f090005;
         public static final int listaDeCursos=0x7f090000;
         public static final int spAnios=0x7f090001;
         public static final int spCuatrimestres=0x7f090002;
         public static final int spCursos=0x7f090003;
-        public static final int spinner1=0x7f090006;
-        public static final int spinner2=0x7f090008;
-        public static final int spinner3=0x7f09000a;
-        public static final int spinner4=0x7f09000c;
-        public static final int spinner5=0x7f09000e;
-        public static final int spinner6=0x7f090010;
-        public static final int spinner7=0x7f090012;
-        public static final int textView1=0x7f090005;
-        public static final int textView2=0x7f090007;
-        public static final int textView3=0x7f090009;
-        public static final int textView4=0x7f09000b;
-        public static final int textView5=0x7f09000d;
-        public static final int textView6=0x7f09000f;
-        public static final int textView7=0x7f090011;
-        public static final int title=0x7f090014;
+        public static final int spinner1=0x7f090007;
+        public static final int spinner2=0x7f090009;
+        public static final int spinner3=0x7f09000b;
+        public static final int spinner4=0x7f09000d;
+        public static final int spinner5=0x7f09000f;
+        public static final int spinner6=0x7f090011;
+        public static final int spinner7=0x7f090013;
+        public static final int textView1=0x7f090006;
+        public static final int textView2=0x7f090008;
+        public static final int textView3=0x7f09000a;
+        public static final int textView4=0x7f09000c;
+        public static final int textView5=0x7f09000e;
+        public static final int textView6=0x7f090010;
+        public static final int textView7=0x7f090012;
+        public static final int title=0x7f090015;
     }
     public static final class layout {
         public static final int activity_abm_curso=0x7f030000;
