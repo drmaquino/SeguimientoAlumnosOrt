@@ -16,7 +16,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.R;
 
@@ -33,9 +32,9 @@ public class ListarGruposActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_grupos);
         
-        setCustomActivityTitle("Lista de Grupos");
+        
 
-        tvCurso = (TextView) findViewById(R.id.curso);
+//        tvCurso = (TextView) findViewById(R.id.curso);
         lvGrupos = (ListView) findViewById(R.id.listaDeCursos);
 
         dbh = new DBHelper(this);
@@ -45,12 +44,13 @@ public class ListarGruposActivity extends Activity
         Curso curso = dbh.findCursoById(id_curso);
 
         /* seteo el nombre del curso como titulo */
-        tvCurso.setText(curso.toString());
+        //tvCurso.setText();
+        setCustomActivityTitle(curso.getNombreResumido());
 
         /* traigo los grupos */
         List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
 
-        tvCurso.setText(curso.toString());
+//        tvCurso.setText(curso.toString());
 
         List<String> grupos = new ArrayList<String>();
         for (Grupo g : gruposObjs)

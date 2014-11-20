@@ -4,7 +4,6 @@ import main.helper.IOHelper;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -38,7 +37,7 @@ public class HomeMenuActivity extends Activity
 	{
 		IOHelper ioh = new IOHelper(this);
 		ioh.dumpDBtoCSV();
-		Toast.makeText(getApplicationContext(), "Archivo generado correctamente:" , Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Archivo generado correctamente" , Toast.LENGTH_LONG).show();
 	}
 	
 	private void setCustomActivityTitle(String title)

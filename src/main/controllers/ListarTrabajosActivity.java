@@ -135,8 +135,11 @@ public class ListarTrabajosActivity extends Activity
             Trabajo trabajo = new Trabajo();
             trabajo = dbh.findTrabajoByIdGrupoNombre(_id_grupo, (String) listaTextView.get(i).getText());
 
-            trabajo.set_estado(listaSpiners.get(i).getSelectedItem().toString());
+//            trabajo.set_estado(listaSpiners.get(i).getSelectedItem().toString());
+            trabajo.set_estado(spinner.getSelectedItem().toString());
+
             dbh.updateTrabajo(trabajo);
+            
             i++;
         }
     }

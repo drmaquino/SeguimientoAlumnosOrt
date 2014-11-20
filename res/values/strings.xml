@@ -11,6 +11,9 @@
     <string name="btnGoToAltaCurso">Agregar nuevo curso</string>
     <string name="btnGoToABMCursos">Administrador de Cursos</string>
     <string name="btnGoToBuscarCursos">Buscar Cursos</string>
+    <string name="btnReiniciarBD">Reiniciar Base de Datos</string>
+    <string name="btnExportarASD">Exportar Archivo a SD</string>
+    <string name="btnGuardar">Guardar</string>
     <string name="TP1">Trabajo practico 1</string>
     <string name="TP2">Trabajo practico 2</string>
     <string name="TP3">Trabajo practico 3</string>
