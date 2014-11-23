@@ -18,7 +18,7 @@ public class HomeMenuActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_menu);
-		setCustomActivityTitle("Inicio");
+		setCustomActivityTitle("Seguimiento de Alumnos");
 	}
 
 	public void goToBuscarCursos(View v)

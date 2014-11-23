@@ -64,6 +64,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="main.controllers.ListarGruposActivity" />
         </activity>
+        <activity
+            android:name="main.controllers.ListarMateriasActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="main.controllers.ListarCursosActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="main.controllers.ListarCursosActivity" />
+        </activity>
     </application>
 
 </manifest>

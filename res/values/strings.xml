@@ -43,10 +43,12 @@
         <item>Curso G</item>
     </string-array>
     <string-array name="TPs">
+        <item>Sin Calificacion</item>
         <item>Aprobado</item>
-        <item>Pendiente</item>
+        <item>Incompleto</item>
         <item>Desaprobado</item>
-        <item>Entregado</item>
+        <item>Ausente</item>
+        
 
     </string-array>
 

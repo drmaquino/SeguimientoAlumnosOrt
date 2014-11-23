@@ -3,7 +3,7 @@ package main.model;
 public class Grupo
 {
     private int _id;
-    private int _id_curso;
+    private int _id_materia;
     private String _numero;
 
     public int get_id()
@@ -11,19 +11,19 @@ public class Grupo
         return _id;
     }
 
-    public void set_id(int _id)
+    public void set_id(int id)
     {
-        this._id = _id;
+        this._id = id;
     }
 
-    public int get_id_curso()
+    public int get_id_materia()
     {
-        return _id_curso;
+        return _id_materia;
     }
 
-    public void set_id_curso(int _id_curso)
+    public void set_id_curso(int id_materia)
     {
-        this._id_curso = _id_curso;
+        this._id_materia = id_materia;
     }
 
     public String get_numero()
@@ -40,16 +40,16 @@ public class Grupo
     {
     }
     
-    public Grupo(int id_curso, String numero)
+    public Grupo(int id_materia, String numero)
     {
-        this._id_curso = id_curso;
+        this._id_materia = id_materia;
         this._numero = numero;
     }
 
-    public Grupo(int id, int id_curso, String numero)
+    public Grupo(int id, int id_materia, String numero)
     {
         this._id = id;
-        this._id_curso = id_curso;
+        this._id_materia = id_materia;
         this._numero = numero;
     }
 }

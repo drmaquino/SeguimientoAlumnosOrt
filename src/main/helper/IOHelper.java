@@ -12,6 +12,7 @@ import java.util.List;
 
 import main.model.Curso;
 import main.model.Grupo;
+import main.model.Materia;
 import main.model.Trabajo;
 import android.content.Context;
 import android.os.Environment;
@@ -137,22 +138,27 @@ public class IOHelper
 		List<Curso> cursos = dbh.getAllCursos();
 		for (Curso curso : cursos)
 		{
-			List<Grupo> grupos = dbh.findGruposByIdCurso(curso.get_id());
-			for (Grupo grupo : grupos)
-			{
-				List<Trabajo> trabajos = dbh.findTrabajosByIdGrupo(grupo.get_id());
+			List<Materia> materias = dbh.findMateriasByIdCurso(curso.get_id());
+			for (Materia materia : materias) {
+			
+				List<Grupo> grupos = dbh.findGruposByIdMateria(materia.getId());
+				for (Grupo grupo : grupos)
 				{
-					for (Trabajo trabajo : trabajos)
+					List<Trabajo> trabajos = dbh.findTrabajosByIdGrupo(grupo.get_id());
 					{
-						csvLine = new ArrayList<String>();
-						csvLine.add(curso.getNombreResumido());
-						csvLine.add(grupo.get_numero());
-						csvLine.add(trabajo.get_nombre());
-						csvLine.add(trabajo.get_estado());
-						lineas.add(csvLine);
+						for (Trabajo trabajo : trabajos)
+						{
+							csvLine = new ArrayList<String>();
+							csvLine.add(curso.getNombreResumido());
+							csvLine.add(grupo.get_numero());
+							csvLine.add(trabajo.get_nombre());
+							csvLine.add(trabajo.get_estado());
+							lineas.add(csvLine);
+						}
 					}
 				}
 			}
+			
 		}
 		
 		for (List<String> linea : lineas)

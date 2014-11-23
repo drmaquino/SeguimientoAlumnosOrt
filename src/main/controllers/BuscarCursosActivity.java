@@ -49,8 +49,8 @@ public class BuscarCursosActivity extends Activity
         }
         else
         {
-            // creo un intent y le los adjunto los datos
-            Intent intent = new Intent(this, ListarGruposActivity.class);
+        	// creo un intent y le los adjunto los datos
+            Intent intent = new Intent(this, ListarMateriasActivity.class);
             intent.putExtra("id_curso", curso.get_id());
 
             // inicio el intent

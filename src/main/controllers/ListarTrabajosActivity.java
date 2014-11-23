@@ -3,6 +3,7 @@ package main.controllers;
 import java.util.ArrayList;
 
 import main.helper.DBHelper;
+import main.model.Grupo;
 import main.model.Trabajo;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -26,18 +27,20 @@ public class ListarTrabajosActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+    	
+    	  dbh = new DBHelper(this);
+    	  listaDeTrabajos = new ArrayList<Trabajo>();
+          listaTextView = new ArrayList<TextView>();
+          listaSpiners = new ArrayList<Spinner>();
+    	
         super.onCreate(savedInstanceState);
-        
-        
-        
-        listaDeTrabajos = new ArrayList<Trabajo>();
-        listaTextView = new ArrayList<TextView>();
-        listaSpiners = new ArrayList<Spinner>();
         setContentView(R.layout.activity_listar_trabajos);
-
+        
         _id_grupo = this.getIntent().getIntExtra("id_grupo", 0);
-
-        setCustomActivityTitle("Grupo " + _id_grupo);
+        
+        Grupo grupo = dbh.findGrupoById(_id_grupo);
+        
+        setCustomActivityTitle("Grupo " + grupo.get_numero());
         
         dbh = new DBHelper(getApplicationContext());
 
@@ -91,21 +94,25 @@ public class ListarTrabajosActivity extends Activity
         int i = 0;
         for (Trabajo trabajo : listaDeTrabajos)
         {
-            if (trabajo.get_estado().equals("Aprobado"))
+            if (trabajo.get_estado().equals("Sin Calificacion"))
             {
                 listaSpiners.get(i).setSelection(0);
             }
-            else if (trabajo.get_estado().equals("Pendiente"))
+            else if (trabajo.get_estado().equals("Aprobado"))
             {
                 listaSpiners.get(i).setSelection(1);
             }
-            else if (trabajo.get_estado().equals("Desaprobado"))
+            else if (trabajo.get_estado().equals("Incompleto"))
             {
                 listaSpiners.get(i).setSelection(2);
             }
-            else if (trabajo.get_estado().equals("Entregado"))
+            else if (trabajo.get_estado().equals("Desaprobado"))
             {
                 listaSpiners.get(i).setSelection(3);
+            }
+            else if (trabajo.get_estado().equals("Ausente"))
+            {
+                listaSpiners.get(i).setSelection(4);
             }
             i++;
         }
@@ -129,8 +136,6 @@ public class ListarTrabajosActivity extends Activity
         {
             Trabajo trabajo = new Trabajo();
             trabajo = dbh.findTrabajoByIdGrupoNombre(_id_grupo, (String) listaTextView.get(i).getText());
-
-//            trabajo.set_estado(listaSpiners.get(i).getSelectedItem().toString());
             trabajo.set_estado(spinner.getSelectedItem().toString());
 
             dbh.updateTrabajo(trabajo);

@@ -6,6 +6,7 @@ import java.util.List;
 import main.helper.DBHelper;
 import main.model.Curso;
 import main.model.Grupo;
+import main.model.Materia;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +23,7 @@ import com.app.R;
 public class ListarGruposActivity extends Activity
 {
     private ListView lvGrupos;
-    private int id_curso;
+    private int id_materia;
     private DBHelper dbh;
 
     @Override
@@ -36,14 +37,15 @@ public class ListarGruposActivity extends Activity
         dbh = new DBHelper(this);
 
         /* traigo el curso */
-        id_curso = this.getIntent().getIntExtra("id_curso", 1);
-        Curso curso = dbh.findCursoById(id_curso);
+        id_materia = this.getIntent().getIntExtra("id_materia", 1);
+        Materia mat = dbh.findMateriaById(id_materia);
+        Curso curso = dbh.findCursoById(mat.getId_curso());
 
         /* seteo el nombre del curso como titulo */
-        setCustomActivityTitle(curso.getNombreResumido());
+        setCustomActivityTitle(curso.getNombreResumido()+ " - " +mat.getNombre());
 
         /* traigo los grupos */
-        List<Grupo> gruposObjs = dbh.findGruposByIdCurso(curso.get_id());
+        List<Grupo> gruposObjs = dbh.findGruposByIdMateria(mat.getId());
 
         List<String> grupos = new ArrayList<String>();
         for (Grupo g : gruposObjs)
@@ -59,7 +61,7 @@ public class ListarGruposActivity extends Activity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 Intent intent = new Intent(getApplicationContext(), ListarTrabajosActivity.class);
-                Grupo grupo = dbh.findGrupoByIdCursoNumero(id_curso, String.valueOf(position + 1));
+                Grupo grupo = dbh.findGrupoByIdMateriaNumero(id_materia, String.valueOf(position + 1));
                 intent.putExtra("id_grupo", grupo.get_id());
                 startActivity(intent);
             }
