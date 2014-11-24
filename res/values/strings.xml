@@ -9,6 +9,7 @@
     <string name="btnBuscar">Buscar</string>
     <string name="btnRegistrarCurso">Registrar curso</string>
     <string name="btnGoToAltaCurso">Agregar nuevo curso</string>
+    <string name="btnGoToAltaGrupo">Agregar nuevo Grupo</string>
     <string name="btnGoToABMCursos">Administrador de Cursos</string>
     <string name="btnGoToBuscarCursos">Buscar Cursos</string>
     <string name="btnReiniciarBD">Reiniciar Base de Datos</string>
@@ -22,6 +23,8 @@
     <string name="TP5">Trabajo practico 5</string>
     <string name="TP6">Trabajo practico 6</string>
     <string name="TP7">Trabajo practico 7</string>
+    
+    
     
 
     <string-array name="anios">

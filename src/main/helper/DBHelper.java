@@ -433,7 +433,7 @@ public class DBHelper extends SQLiteOpenHelper
         ContentValues values = new ContentValues();
         values.put(KEY_MATERIA, grupo.get_id_materia());
         values.put(KEY_NUMERO, grupo.get_numero());
-
+        
         // Inserting Row
         db.insert(TABLE_GRUPOS, null, values);
 
@@ -457,7 +457,7 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         Grupo grupo = null;
 
-        Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID, KEY_MATERIA, KEY_NUMERO }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_GRUPOS, new String[] { KEY_ID, KEY_MATERIA, KEY_NUMERO}, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
         {
             cursor.moveToFirst();
@@ -475,7 +475,7 @@ public class DBHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         Grupo grupo = null;
 
-        String[] select = new String[] { KEY_ID, KEY_MATERIA, KEY_NUMERO };
+        String[] select = new String[] { KEY_ID, KEY_MATERIA, KEY_NUMERO};
         String where = String.format("%s=? AND %s=?", KEY_MATERIA, KEY_NUMERO);
         String[] whereArgs = new String[] { String.valueOf(id_materia), numero };
 
@@ -494,6 +494,27 @@ public class DBHelper extends SQLiteOpenHelper
         return grupo;
     }
 
+    public int findUltimoGrupoByIdMateriaGrupo(int id_materia)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int numeroGrupo =0;
+        //String Query = "SELECT * FROM " + TABLE_GRUPOS + " WHERE " + KEY_NUMERO + " = (SELECT max(" + KEY_NUMERO + ") FROM " + TABLE_GRUPOS + ") AND " + KEY_MATERIA + " = " + id_materia;
+    	
+        String Query1 ="SELECT max(" + KEY_NUMERO + ") FROM " + TABLE_GRUPOS + " WHERE " + KEY_MATERIA + " = " + id_materia;
+        Cursor cursor = db.rawQuery(Query1, null);
+    	 
+    	if (cursor != null)
+        {
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+            {
+               numeroGrupo = Integer.parseInt(cursor.getString(0));
+            }
+        }
+    			  	
+    	return numeroGrupo;
+    }
+    
     // Getting All Grupos
     public List<Grupo> getAllGrupos()
     {

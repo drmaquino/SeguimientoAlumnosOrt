@@ -150,6 +150,7 @@ public class IOHelper
 						{
 							csvLine = new ArrayList<String>();
 							csvLine.add(curso.getNombreResumido());
+							csvLine.add(materia.getNombre());
 							csvLine.add(grupo.get_numero());
 							csvLine.add(trabajo.get_nombre());
 							csvLine.add(trabajo.get_estado());

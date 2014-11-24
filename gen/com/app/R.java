@@ -32,30 +32,31 @@ public final class R {
         public static final int logo_ort=0x7f020001;
     }
     public static final class id {
-        public static final int GuardarEstados=0x7f090015;
-        public static final int ListaMaterias=0x7f090006;
-        public static final int action_settings=0x7f090017;
+        public static final int GuardarEstados=0x7f090016;
+        public static final int ListaMaterias=0x7f090007;
+        public static final int action_settings=0x7f090018;
         public static final int btnBuscar=0x7f090004;
+        public static final int btnNuevoGrupo=0x7f090006;
         public static final int imageView1=0x7f090005;
         public static final int listaDeCursos=0x7f090000;
         public static final int spAnios=0x7f090001;
         public static final int spCuatrimestres=0x7f090002;
         public static final int spCursos=0x7f090003;
-        public static final int spinner1=0x7f090008;
-        public static final int spinner2=0x7f09000a;
-        public static final int spinner3=0x7f09000c;
-        public static final int spinner4=0x7f09000e;
-        public static final int spinner5=0x7f090010;
-        public static final int spinner6=0x7f090012;
-        public static final int spinner7=0x7f090014;
-        public static final int textView1=0x7f090007;
-        public static final int textView2=0x7f090009;
-        public static final int textView3=0x7f09000b;
-        public static final int textView4=0x7f09000d;
-        public static final int textView5=0x7f09000f;
-        public static final int textView6=0x7f090011;
-        public static final int textView7=0x7f090013;
-        public static final int title=0x7f090016;
+        public static final int spinner1=0x7f090009;
+        public static final int spinner2=0x7f09000b;
+        public static final int spinner3=0x7f09000d;
+        public static final int spinner4=0x7f09000f;
+        public static final int spinner5=0x7f090011;
+        public static final int spinner6=0x7f090013;
+        public static final int spinner7=0x7f090015;
+        public static final int textView1=0x7f090008;
+        public static final int textView2=0x7f09000a;
+        public static final int textView3=0x7f09000c;
+        public static final int textView4=0x7f09000e;
+        public static final int textView5=0x7f090010;
+        public static final int textView6=0x7f090012;
+        public static final int textView7=0x7f090014;
+        public static final int title=0x7f090017;
     }
     public static final class layout {
         public static final int activity_abm_curso=0x7f030000;
@@ -72,28 +73,29 @@ public final class R {
         public static final int main=0x7f080001;
     }
     public static final class string {
-        public static final int TP1=0x7f05000e;
-        public static final int TP2=0x7f05000f;
-        public static final int TP3=0x7f050010;
-        public static final int TP4=0x7f050011;
-        public static final int TP5=0x7f050012;
-        public static final int TP6=0x7f050013;
-        public static final int TP7=0x7f050014;
+        public static final int TP1=0x7f05000f;
+        public static final int TP2=0x7f050010;
+        public static final int TP3=0x7f050011;
+        public static final int TP4=0x7f050012;
+        public static final int TP5=0x7f050013;
+        public static final int TP6=0x7f050014;
+        public static final int TP7=0x7f050015;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int btnBuscar=0x7f050005;
-        public static final int btnExportarASD=0x7f05000b;
-        public static final int btnGoToABMCursos=0x7f050008;
+        public static final int btnExportarASD=0x7f05000c;
+        public static final int btnGoToABMCursos=0x7f050009;
         public static final int btnGoToAltaCurso=0x7f050007;
-        public static final int btnGoToBuscarCursos=0x7f050009;
-        public static final int btnGuardar=0x7f05000c;
+        public static final int btnGoToAltaGrupo=0x7f050008;
+        public static final int btnGoToBuscarCursos=0x7f05000a;
+        public static final int btnGuardar=0x7f05000d;
         public static final int btnRegistrarCurso=0x7f050006;
-        public static final int btnReiniciarBD=0x7f05000a;
-        public static final int image_description=0x7f05000d;
+        public static final int btnReiniciarBD=0x7f05000b;
+        public static final int image_description=0x7f05000e;
         public static final int lblAnio=0x7f050002;
         public static final int lblCuatrimestre=0x7f050003;
         public static final int lblCurso=0x7f050004;
-        public static final int title_activity_grupos=0x7f050015;
+        public static final int title_activity_grupos=0x7f050016;
     }
     public static final class style {
         /** 

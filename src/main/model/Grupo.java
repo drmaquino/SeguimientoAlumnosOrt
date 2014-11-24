@@ -5,7 +5,9 @@ public class Grupo
     private int _id;
     private int _id_materia;
     private String _numero;
-
+  
+    
+    
     public int get_id()
     {
         return _id;
@@ -40,10 +42,11 @@ public class Grupo
     {
     }
     
-    public Grupo(int id_materia, String numero)
+     public Grupo(int id_materia, String numero)
     {
         this._id_materia = id_materia;
         this._numero = numero;
+
     }
 
     public Grupo(int id, int id_materia, String numero)

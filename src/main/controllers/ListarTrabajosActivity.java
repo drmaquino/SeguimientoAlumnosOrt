@@ -9,12 +9,15 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.R;
+import com.app.R.layout;
 
 public class ListarTrabajosActivity extends Activity
 {
@@ -43,8 +46,7 @@ public class ListarTrabajosActivity extends Activity
         setCustomActivityTitle("Grupo " + grupo.get_numero());
         
         dbh = new DBHelper(getApplicationContext());
-
-        //
+        
         TextView txtTP1 = (TextView) findViewById(R.id.textView1);
         TextView txtTP2 = (TextView) findViewById(R.id.textView2);
         TextView txtTP3 = (TextView) findViewById(R.id.textView3);
@@ -154,4 +156,13 @@ public class ListarTrabajosActivity extends Activity
 	    tv.setText(title);
 		ab.setCustomView(customTitle);
 	}
+	/*
+	public void nuevoTrabajo(View view)
+	{
+		Trabajo trabajo = new Trabajo(_id_grupo, "Nombre del TP","Estado Inicial");
+		dbh.addTrabajo(trabajo);
+		finish();
+        startActivity(getIntent());
+		//Toast.makeText(getApplicationContext(), grupo.get_numero() + " - " + grupo.get_id_materia(), Toast.LENGTH_SHORT).show();
+	}*/
 }
