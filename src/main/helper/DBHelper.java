@@ -3,8 +3,6 @@ package main.helper;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.ls.LSInput;
-
 import main.model.Curso;
 import main.model.Grupo;
 import main.model.Materia;
@@ -60,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper
    
     
 
-    private static final int CANT_GRUPOS_POR_CURSO = 7;
+    private static final int CANT_GRUPOS_POR_CURSO = 4;
     private static final int CANT_TRABAJOS_POR_GRUPO = 7;
 
     private static String CREATE_TABLE_CURSOS = "CREATE TABLE " + TABLE_CURSOS + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_ANIO + " TEXT," + KEY_CUATRI + " TEXT," + KEY_LETRA + " TEXT" + ")";
@@ -234,7 +232,7 @@ public class DBHelper extends SQLiteOpenHelper
         	
         	for (String materia : MateriasCurso) {
 				Materia mat = new Materia();
-				mat.setGrupos(5);
+				mat.setGrupos(CANT_GRUPOS_POR_CURSO);
 				mat.setId_curso(cursoCreado.get_id());
 				mat.setNombre(materia.toString());
 				addMateria(mat);
